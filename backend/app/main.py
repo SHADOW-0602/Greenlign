@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from app.api.audit import router as audit_router
 from app.api.calculation import router as calculation_router
 from app.api.classification import router as classification_router
 from app.api.health import router as health_router
@@ -22,4 +23,9 @@ app.include_router(
     calculation_router,
     prefix="/api/calculations",
     tags=["calculations"],
+)
+app.include_router(
+    audit_router,
+    prefix="/api/audit",
+    tags=["audit"],
 )

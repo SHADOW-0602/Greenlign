@@ -1,3 +1,6 @@
+import json
+import sqlite3
+import uuid
 from collections.abc import AsyncGenerator
 
 import pytest_asyncio
@@ -6,6 +9,34 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_asyn
 from sqlalchemy.ext.compiler import compiles
 
 from app.models import Base
+
+# Register adapter for lists on SQLite (e.g. Postgres ARRAY)
+sqlite3.register_adapter(
+    list,
+    lambda val: json.dumps([str(x) if isinstance(x, uuid.UUID) else x for x in val]),
+)
+
+_orig_array_proc = ARRAY.result_processor
+
+
+def _sqlite_array_result_processor(self, dialect, coltype):
+    if dialect.name == "sqlite":
+        def process(value):
+            if value is None:
+                return []
+            if isinstance(value, str):
+                try:
+                    data = json.loads(value)
+                    return [uuid.UUID(x) if isinstance(x, str) else x for x in data]
+                except Exception:
+                    return value
+            return value
+
+        return process
+    return _orig_array_proc(self, dialect, coltype)
+
+
+ARRAY.result_processor = _sqlite_array_result_processor  # type: ignore[method-assign]
 
 
 # Compile Postgres-specific types on SQLite so create_all doesn't fail
