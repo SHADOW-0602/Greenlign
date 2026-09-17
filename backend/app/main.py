@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from app.api.audit import router as audit_router
 from app.api.calculation import router as calculation_router
 from app.api.classification import router as classification_router
+from app.api.disclosures import router as disclosures_router
 from app.api.health import router as health_router
 from app.api.ingestion import router as ingestion_router
 
@@ -28,4 +29,9 @@ app.include_router(
     audit_router,
     prefix="/api/audit",
     tags=["audit"],
+)
+app.include_router(
+    disclosures_router,
+    prefix="/api/disclosures",
+    tags=["disclosures"],
 )

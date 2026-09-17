@@ -63,8 +63,14 @@ UNIT_CONVERSIONS: Final[dict[tuple[str, str], Decimal]] = {
     ("gallon", "liters"): Decimal("3.785411784"),
     ("gallons", "liter"): Decimal("3.785411784"),
     ("gallon", "liter"): Decimal("3.785411784"),
+    ("gallons", "gallon"): Decimal("1"),
+    ("gallon", "gallons"): Decimal("1"),
+    ("gallon", "gallon"): Decimal("1"),
+    ("gallons", "gallons"): Decimal("1"),
     ("gal", "liters"): Decimal("3.785411784"),
     ("gal", "liter"): Decimal("3.785411784"),
+    ("gal", "gallon"): Decimal("1"),
+    ("gal", "gallons"): Decimal("1"),
 
     # Mass: Base unit is kg
     ("kg", "kg"): Decimal("1"),
