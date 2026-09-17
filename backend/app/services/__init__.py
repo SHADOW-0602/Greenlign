@@ -1,3 +1,4 @@
+from .anomaly_detector import AnomalyDetector
 from .ingestion_service import (
     IngestionError,
     IngestionService,
@@ -14,6 +15,7 @@ from .storage_service import StorageService
 from .tabular_parser import ParsedActivityRow, TabularParser, TabularParserError
 
 __all__ = [
+    "AnomalyDetector",
     "IngestionError",
     "IngestionService",
     "PDFParser",
@@ -28,4 +30,3 @@ __all__ = [
     "TabularParserError",
     "UnsupportedFileTypeError",
 ]
-
