@@ -11,3 +11,6 @@ boto3==1.35.84
 python-multipart==0.0.17
 httpx==0.27.2
 groq==0.13.1             # LLM provider — used from Phase 2+; installed now so it's available
+pandas==2.2.3
+openpyxl==3.1.5
+pypdf==5.1.0

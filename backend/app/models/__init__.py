@@ -4,6 +4,7 @@ from .base import Base
 from .calculation import Calculation
 from .disclosure import Disclosure
 from .emission_factor import EmissionFactor
+from .source_document import SourceDocument
 
 __all__ = [
     "Base",
@@ -12,4 +13,5 @@ __all__ = [
     "Calculation",
     "AuditLogEntry",
     "Disclosure",
+    "SourceDocument",
 ]

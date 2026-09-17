@@ -14,6 +14,7 @@ from app.models import (
     Calculation,
     Disclosure,
     EmissionFactor,
+    SourceDocument,
 )
 from app.models.base import new_uuid
 
@@ -25,6 +26,7 @@ def test_all_models_importable():
     assert Calculation.__tablename__ == "calculation"
     assert AuditLogEntry.__tablename__ == "audit_log"
     assert Disclosure.__tablename__ == "disclosure"
+    assert SourceDocument.__tablename__ == "source_document"
 
 
 def test_base_has_all_tables():
@@ -34,6 +36,7 @@ def test_base_has_all_tables():
     assert "calculation" in table_names
     assert "audit_log" in table_names
     assert "disclosure" in table_names
+    assert "source_document" in table_names
 
 
 def test_new_uuid_helper():

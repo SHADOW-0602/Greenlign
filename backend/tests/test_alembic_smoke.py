@@ -29,16 +29,15 @@ def test_alembic_config_loadable():
 
 
 def test_script_directory_contains_initial_migration():
-    """Verify migration script directory contains the initial migration."""
+    """Verify migration script directory contains the initial migration and subsequent revisions."""
     config = _get_alembic_config()
     script_dir = ScriptDirectory.from_config(config)
 
-    revisions = list(script_dir.walk_revisions())
-    assert len(revisions) == 1
-
-    initial_rev = revisions[0]
-    assert initial_rev.revision == "0001_initial_schema"
-    assert initial_rev.down_revision is None
+    revisions = {rev.revision: rev for rev in script_dir.walk_revisions()}
+    assert "0001_initial_schema" in revisions
+    assert revisions["0001_initial_schema"].down_revision is None
+    assert "0002_source_document" in revisions
+    assert revisions["0002_source_document"].down_revision == "0001_initial_schema"
 
 
 def test_script_directory_recognizes_head_revision():
@@ -46,8 +45,8 @@ def test_script_directory_recognizes_head_revision():
     config = _get_alembic_config()
     script_dir = ScriptDirectory.from_config(config)
 
-    assert script_dir.get_current_head() == "0001_initial_schema"
-    assert script_dir.get_heads() == ["0001_initial_schema"]
+    assert script_dir.get_current_head() == "0002_source_document"
+    assert script_dir.get_heads() == ["0002_source_document"]
 
     head_rev = script_dir.get_revision(script_dir.get_current_head())
     assert head_rev is not None
@@ -56,7 +55,7 @@ def test_script_directory_recognizes_head_revision():
 
 
 def test_offline_migration_sql_generation():
-    """Verify offline upgrade generates DDL for all 5 core tables and downgrade drops them."""
+    """Verify offline upgrade generates DDL for all core tables and downgrade drops them."""
     os.environ.setdefault(
         "DATABASE_URL",
         "postgresql+asyncpg://postgres:postgres@localhost:5432/greenlign?sslmode=require",
@@ -76,6 +75,7 @@ def test_offline_migration_sql_generation():
         "calculation",
         "audit_log",
         "disclosure",
+        "source_document",
     ]
     for table in expected_tables:
         assert f"CREATE TABLE {table}" in upgrade_sql
@@ -87,7 +87,7 @@ def test_offline_migration_sql_generation():
     # Test downgrade DDL generation
     downgrade_buf = io.StringIO()
     with contextlib.redirect_stdout(downgrade_buf):
-        command.downgrade(config, "0001_initial_schema:base", sql=True)
+        command.downgrade(config, "0002_source_document:base", sql=True)
     downgrade_sql = downgrade_buf.getvalue()
 
     for table in expected_tables:
