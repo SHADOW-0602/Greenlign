@@ -23,6 +23,7 @@ class Settings(BaseSettings):
     # Groq LLM (Phase 2+) — optional in Phase 0 but validated when present
     groq_api_key: str = ""
     groq_model: str = "llama-3.3-70b-versatile"
+    classification_confidence_threshold: float = 0.75
 
     @field_validator("database_url")
     @classmethod
