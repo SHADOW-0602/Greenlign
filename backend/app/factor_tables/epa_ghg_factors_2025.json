@@ -1,0 +1,26 @@
+[
+  {
+    "source": "EPA_GHG_Hub",
+    "source_version": "2025",
+    "activity_type": "electricity_purchase",
+    "geography": "US",
+    "unit": "kWh",
+    "factor_value": "0.3859",
+    "factor_unit": "kgCO2e/kWh",
+    "published_date": "2025-01-01",
+    "effective_from": "2025-01-01",
+    "effective_to": null
+  },
+  {
+    "source": "EPA_GHG_Hub",
+    "source_version": "2025",
+    "activity_type": "natural_gas_combustion",
+    "geography": "US",
+    "unit": "MMBtu",
+    "factor_value": "53.06",
+    "factor_unit": "kgCO2e/MMBtu",
+    "published_date": "2025-01-01",
+    "effective_from": "2025-01-01",
+    "effective_to": null
+  }
+]

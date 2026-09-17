@@ -1,0 +1,26 @@
+[
+  {
+    "source": "DEFRA",
+    "source_version": "2025",
+    "activity_type": "electricity_purchase",
+    "geography": "GB",
+    "unit": "kWh",
+    "factor_value": "0.20493",
+    "factor_unit": "kgCO2e/kWh",
+    "published_date": "2025-06-01",
+    "effective_from": "2025-01-01",
+    "effective_to": null
+  },
+  {
+    "source": "DEFRA",
+    "source_version": "2025",
+    "activity_type": "freight_road",
+    "geography": "GB",
+    "unit": "tonne.km",
+    "factor_value": "0.10421",
+    "factor_unit": "kgCO2e/tonne.km",
+    "published_date": "2025-06-01",
+    "effective_from": "2025-01-01",
+    "effective_to": null
+  }
+]
