@@ -11,11 +11,10 @@ This document is written to be pasted directly into an AI IDE as a build brief. 
 |---|---|---|
 | Language (backend) | **Python 3.12** | Best ecosystem for data parsing (pandas), OCR, and agent orchestration |
 | Backend framework | **FastAPI** | Async, typed, auto-generates OpenAPI docs — good for an AI IDE to reason about |
-| Agent orchestration | **Lyzr Agent API** (Data Analysis Agent) | Provides tool-mediated ("Safe AI") arithmetic and structured tool-calling |
-| LLM provider (fallback/dev) | **Anthropic Claude API** (claude-sonnet-4-6) via `anthropic` Python SDK | Used for classification/narrative steps only — never final arithmetic |
-| Database | **PostgreSQL 16** | Relational integrity for the audit ledger; JSONB columns for flexible line-item metadata |
+| LLM provider | **Groq API** (`llama-3.3-70b-versatile` via `groq` Python SDK) | Used for classification/narrative steps only — never final arithmetic |
+| Database | **Neon Serverless PostgreSQL** (PostgreSQL 16 compatible) | Relational integrity for the audit ledger; connection pooling and SSL (`sslmode=require`); JSONB columns for flexible line-item metadata |
 | ORM | **SQLAlchemy 2.0 + Alembic** | Migrations needed since factor tables and schemas will evolve |
-| Object storage | **S3-compatible (AWS S3 or MinIO for local dev)** | Raw source documents (PDFs, CSVs) stored immutably, referenced by hash |
+| Object storage | **Backblaze B2 (production) / MinIO (local dev)** | S3-compatible via `boto3`; raw source documents (PDFs, CSVs) stored immutably, referenced by hash |
 | Task queue | **Celery + Redis** | Async ingestion/OCR jobs shouldn't block API requests |
 | OCR/document parsing | **`unstructured` library + `pytesseract`** (or AWS Textract if cloud budget allows) | Utility bill PDFs, freight logs |
 | Tabular parsing | **pandas + openpyxl** | CSV/XLSX ERP exports |
@@ -192,7 +191,7 @@ Each phase below is scoped to be a self-contained prompt for an AI IDE session. 
 ### Phase 2 — Scope Classification
 **Goal:** LLM-assisted classification of each `ActivityData` row into Scope 1/2/3 + GHG Protocol category, with confidence scoring.
 **Must include:**
-- `scope_classifier.py` service calling Claude/Lyzr with a structured-output prompt (JSON schema for scope + category + confidence)
+- `scope_classifier.py` calling Groq API (`llama-3.3-70b-versatile`) with a structured-output prompt (JSON schema for scope + category + confidence)
 - Confidence threshold config (e.g. <0.75 → `status = "pending_review"` for human queue)
 - Review queue API + minimal frontend page to approve/correct classifications
 **Acceptance criteria:**
