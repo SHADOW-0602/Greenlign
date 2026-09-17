@@ -102,3 +102,81 @@ async def test_activity_data_insert_and_read(db_session):
     assert row.id is not None
     assert row.status == "pending_review"
     assert row.quantity == Decimal("1000.000000")
+
+
+def test_database_engine_and_session_factory():
+    """Verify engine and session factory configuration per global constraints."""
+    import inspect
+    import os
+    os.environ.setdefault("DATABASE_URL", "sqlite+aiosqlite:///:memory:")
+
+    from sqlalchemy.ext.asyncio import AsyncEngine, AsyncSession
+
+    from app.core.database import AsyncSessionLocal, engine, get_db
+
+    assert isinstance(engine, AsyncEngine)
+    assert engine.pool._pre_ping is True
+    assert AsyncSessionLocal.kw.get("expire_on_commit") is False
+    assert AsyncSessionLocal.class_ is AsyncSession
+    assert inspect.isasyncgenfunction(get_db)
+
+
+@pytest.mark.asyncio
+async def test_get_db_commit_on_success():
+    """Verify get_db commits on normal completion."""
+    import os
+    from unittest.mock import AsyncMock, patch
+    os.environ.setdefault("DATABASE_URL", "sqlite+aiosqlite:///:memory:")
+
+    from sqlalchemy.ext.asyncio import AsyncSession
+
+    from app.core.database import get_db
+
+    mock_session = AsyncMock(spec=AsyncSession)
+    mock_session.commit = AsyncMock()
+    mock_session.rollback = AsyncMock()
+
+    with patch("app.core.database.AsyncSessionLocal") as mock_sessionmaker:
+        mock_sessionmaker.return_value.__aenter__.return_value = mock_session
+        mock_sessionmaker.return_value.__aexit__.return_value = None
+
+        gen = get_db()
+        yielded_session = await anext(gen)
+        assert yielded_session == mock_session
+
+        with pytest.raises(StopAsyncIteration):
+            await anext(gen)
+
+        mock_session.commit.assert_awaited_once()
+        mock_session.rollback.assert_not_awaited()
+
+
+@pytest.mark.asyncio
+async def test_get_db_rollback_on_exception():
+    """Verify get_db rolls back on exception and re-raises."""
+    import os
+    from unittest.mock import AsyncMock, patch
+    os.environ.setdefault("DATABASE_URL", "sqlite+aiosqlite:///:memory:")
+
+    from sqlalchemy.ext.asyncio import AsyncSession
+
+    from app.core.database import get_db
+
+    mock_session = AsyncMock(spec=AsyncSession)
+    mock_session.commit = AsyncMock()
+    mock_session.rollback = AsyncMock()
+
+    with patch("app.core.database.AsyncSessionLocal") as mock_sessionmaker:
+        mock_sessionmaker.return_value.__aenter__.return_value = mock_session
+        mock_sessionmaker.return_value.__aexit__.return_value = None
+
+        gen = get_db()
+        yielded_session = await anext(gen)
+        assert yielded_session == mock_session
+
+        with pytest.raises(RuntimeError, match="database test error"):
+            await gen.athrow(RuntimeError("database test error"))
+
+        mock_session.rollback.assert_awaited_once()
+        mock_session.commit.assert_not_awaited()
+
