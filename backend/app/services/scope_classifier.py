@@ -55,7 +55,11 @@ class ScopeClassifier:
         self.model = model or settings.groq_model
         if groq_client:
             self._client = groq_client
-        elif self.api_key and self.api_key.strip():
+        elif (
+            self.api_key
+            and self.api_key.strip()
+            and not self.api_key.startswith("gsk_dummy")
+        ):
             self._client = Groq(api_key=self.api_key.strip())
         else:
             self._client = None
@@ -160,31 +164,38 @@ class ScopeClassifier:
         supplier_ref: str,
     ) -> ScopeClassificationResult:
         """Deterministic heuristic classifier for offline testing and fallback."""
-        text = f"{activity_type} {unit} {raw_line_ref}".lower()
+        text = f"{activity_type} {unit} {raw_line_ref}".lower().replace("_", " ")
 
         # Scope 2 keywords
-        if any(w in text for w in ["electricity", "kwh", "mwh", "grid power", "electric_purchase"]):
+        if any(
+            w in text
+            for w in ["electricity", "kwh", "mwh", "grid power", "electric purchase", "power"]
+        ):
             return ScopeClassificationResult(
                 scope=2,
                 ghg_category="purchased_electricity",
                 confidence=0.95,
                 reasoning="Electricity grid purchase corresponds to Scope 2 purchased electricity.",
             )
-        if any(w in text for w in ["district steam", "purchased steam", "steam_purchase"]):
+        if any(w in text for w in ["district steam", "purchased steam", "steam"]):
             return ScopeClassificationResult(
                 scope=2,
                 ghg_category="purchased_steam",
                 confidence=0.95,
                 reasoning="Steam purchase corresponds to Scope 2 purchased steam.",
             )
-        if "district heating" in text or "purchased heating" in text:
+        if (
+            "district heating" in text
+            or "purchased heating" in text
+            or "hot water supply" in text
+        ):
             return ScopeClassificationResult(
                 scope=2,
                 ghg_category="purchased_heating",
                 confidence=0.95,
                 reasoning="District heating corresponds to Scope 2 purchased heating.",
             )
-        if "district cooling" in text or "chilled water" in text:
+        if "district cooling" in text or "chilled water" in text or "cooling" in text:
             return ScopeClassificationResult(
                 scope=2,
                 ghg_category="purchased_cooling",
@@ -196,7 +207,6 @@ class ScopeClassifier:
         if any(
             w in text
             for w in [
-                "natural_gas",
                 "natural gas",
                 "therms",
                 "ccf",
@@ -204,8 +214,10 @@ class ScopeClassifier:
                 "furnace",
                 "fuel oil",
                 "diesel generator",
+                "generator",
                 "stationary",
-                "propane heating",
+                "propane",
+                "lpg",
             ]
         ):
             return ScopeClassificationResult(
@@ -226,6 +238,8 @@ class ScopeClassifier:
                 "fleet diesel",
                 "fleet gasoline",
                 "owned truck",
+                "truck diesel",
+                "petrol",
             ]
         ):
             return ScopeClassificationResult(
@@ -247,7 +261,16 @@ class ScopeClassifier:
                 confidence=0.95,
                 reasoning="Refrigerant gas releases correspond to Scope 1 fugitive emissions.",
             )
-        if any(w in text for w in ["cement process", "lime calcination", "chemical synthesis"]):
+        if any(
+            w in text
+            for w in [
+                "cement",
+                "calcination",
+                "kiln",
+                "process emissions",
+                "chemical synthesis",
+            ]
+        ):
             return ScopeClassificationResult(
                 scope=1,
                 ghg_category="process_emissions",
@@ -261,7 +284,15 @@ class ScopeClassifier:
         # Scope 3 keywords
         if any(
             w in text
-            for w in ["flight", "airline", "air travel", "hotel", "lodging", "business travel"]
+            for w in [
+                "flight",
+                "airline",
+                "air travel",
+                "airfare",
+                "hotel",
+                "lodging",
+                "business travel",
+            ]
         ):
             return ScopeClassificationResult(
                 scope=3,
@@ -272,7 +303,10 @@ class ScopeClassifier:
                     "Scope 3 Category 6 Business Travel."
                 ),
             )
-        if any(w in text for w in ["commute", "commuting", "subway", "transit pass", "metro"]):
+        if any(
+            w in text
+            for w in ["commute", "commuting", "subway", "transit pass", "metro", "shuttle"]
+        ):
             return ScopeClassificationResult(
                 scope=3,
                 ghg_category="employee_commuting",
@@ -284,7 +318,16 @@ class ScopeClassifier:
             )
         if any(
             w in text
-            for w in ["freight", "trucking", "shipping", "courier", "logistics", "tonne.km"]
+            for w in [
+                "freight",
+                "trucking",
+                "shipping",
+                "courier",
+                "logistics",
+                "tonne.km",
+                "cargo",
+                "parcel",
+            ]
         ):
             return ScopeClassificationResult(
                 scope=3,
@@ -307,7 +350,13 @@ class ScopeClassifier:
             )
         if any(
             w in text
-            for w in ["capital", "machinery", "equipment purchase", "building acquisition"]
+            for w in [
+                "capital",
+                "machinery",
+                "equipment purchase",
+                "building acquisition",
+                "server rack",
+            ]
         ):
             return ScopeClassificationResult(
                 scope=3,

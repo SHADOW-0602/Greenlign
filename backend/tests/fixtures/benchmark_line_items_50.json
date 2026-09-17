@@ -1,0 +1,64 @@
+[
+  {"id": 1, "activity_type": "natural_gas_boiler_consumption", "unit": "therms", "raw_line_ref": "FAC-01-GAS", "supplier_ref": "TOKEN_SUPP_GAS_01", "expected_scope": 1, "expected_category": "stationary_combustion"},
+  {"id": 2, "activity_type": "heating_fuel_oil_furnace", "unit": "gallons", "raw_line_ref": "FAC-02-OIL", "supplier_ref": "TOKEN_SUPP_OIL_01", "expected_scope": 1, "expected_category": "stationary_combustion"},
+  {"id": 3, "activity_type": "emergency_diesel_generator_testing", "unit": "gallons", "raw_line_ref": "GEN-01", "supplier_ref": "TOKEN_SUPP_FUEL_02", "expected_scope": 1, "expected_category": "stationary_combustion"},
+  {"id": 4, "activity_type": "natural_gas_space_heating", "unit": "ccf", "raw_line_ref": "GAS-HEAT-03", "supplier_ref": "TOKEN_SUPP_NATGAS", "expected_scope": 1, "expected_category": "stationary_combustion"},
+  {"id": 5, "activity_type": "facility_propane_heating_tank", "unit": "gallons", "raw_line_ref": "PROP-01", "supplier_ref": "TOKEN_SUPP_PROPANE", "expected_scope": 1, "expected_category": "stationary_combustion"},
+  {"id": 6, "activity_type": "natural_gas_furnace_burn", "unit": "MMBtu", "raw_line_ref": "FURN-04", "supplier_ref": "TOKEN_SUPP_GAS_02", "expected_scope": 1, "expected_category": "stationary_combustion"},
+
+  {"id": 7, "activity_type": "company_fleet_diesel_refuel", "unit": "gallons", "raw_line_ref": "FLEET-001", "supplier_ref": "TOKEN_SUPP_PETRO_01", "expected_scope": 1, "expected_category": "mobile_combustion"},
+  {"id": 8, "activity_type": "fleet_gasoline_delivery_vans", "unit": "gallons", "raw_line_ref": "VAN-012", "supplier_ref": "TOKEN_SUPP_PETRO_02", "expected_scope": 1, "expected_category": "mobile_combustion"},
+  {"id": 9, "activity_type": "owned_truck_diesel_transport", "unit": "liters", "raw_line_ref": "TRK-88", "supplier_ref": "TOKEN_SUPP_DIESEL", "expected_scope": 1, "expected_category": "mobile_combustion"},
+  {"id": 10, "activity_type": "sales_team_company_car_fuel", "unit": "gallons", "raw_line_ref": "CAR-04", "supplier_ref": "TOKEN_SUPP_FUEL", "expected_scope": 1, "expected_category": "mobile_combustion"},
+  {"id": 11, "activity_type": "maintenance_company_vehicle_petrol", "unit": "liters", "raw_line_ref": "VEH-19", "supplier_ref": "TOKEN_SUPP_PETROL", "expected_scope": 1, "expected_category": "mobile_combustion"},
+
+  {"id": 12, "activity_type": "facility_chiller_r-410a_refrigerant_leakage", "unit": "kg", "raw_line_ref": "HVAC-01", "supplier_ref": "TOKEN_SUPP_HVAC", "expected_scope": 1, "expected_category": "fugitive_emissions"},
+  {"id": 13, "activity_type": "refrigerant_r-134a_recharge", "unit": "kg", "raw_line_ref": "COOL-02", "supplier_ref": "TOKEN_SUPP_COOLING", "expected_scope": 1, "expected_category": "fugitive_emissions"},
+  {"id": 14, "activity_type": "substation_sf6_gas_insulation_leakage", "unit": "kg", "raw_line_ref": "ELEC-SUB-01", "supplier_ref": "TOKEN_SUPP_POWER_TECH", "expected_scope": 1, "expected_category": "fugitive_emissions"},
+
+  {"id": 15, "activity_type": "lime_calcination_kiln_emissions", "unit": "tonnes", "raw_line_ref": "PROC-KILN-01", "supplier_ref": "TOKEN_SUPP_CHEM", "expected_scope": 1, "expected_category": "process_emissions"},
+
+  {"id": 16, "activity_type": "purchased_grid_electricity_hq", "unit": "kWh", "raw_line_ref": "UTIL-HQ-JAN", "supplier_ref": "TOKEN_SUPP_EDISON", "expected_scope": 2, "expected_category": "purchased_electricity"},
+  {"id": 17, "activity_type": "warehouse_electricity_consumption", "unit": "kWh", "raw_line_ref": "UTIL-WH1-FEB", "supplier_ref": "TOKEN_SUPP_PACIFIC", "expected_scope": 2, "expected_category": "purchased_electricity"},
+  {"id": 18, "activity_type": "data_center_purchased_power", "unit": "MWh", "raw_line_ref": "DC-WEST-01", "supplier_ref": "TOKEN_SUPP_GRID_01", "expected_scope": 2, "expected_category": "purchased_electricity"},
+  {"id": 19, "activity_type": "branch_office_electricity_bill", "unit": "kWh", "raw_line_ref": "BR-302-UTIL", "supplier_ref": "TOKEN_SUPP_POWER_CO", "expected_scope": 2, "expected_category": "purchased_electricity"},
+  {"id": 20, "activity_type": "manufacturing_facility_electricity", "unit": "MWh", "raw_line_ref": "PLANT-ELEC-1", "supplier_ref": "TOKEN_SUPP_ENERGY", "expected_scope": 2, "expected_category": "purchased_electricity"},
+  {"id": 21, "activity_type": "ev_charging_station_electricity", "unit": "kWh", "raw_line_ref": "EV-CHG-01", "supplier_ref": "TOKEN_SUPP_CLEAN_ELEC", "expected_scope": 2, "expected_category": "purchased_electricity"},
+
+  {"id": 22, "activity_type": "district_steam_heating_network", "unit": "therms", "raw_line_ref": "STEAM-DIST-01", "supplier_ref": "TOKEN_SUPP_STEAM_CO", "expected_scope": 2, "expected_category": "purchased_steam"},
+  {"id": 23, "activity_type": "industrial_purchased_steam_supply", "unit": "lb_steam", "raw_line_ref": "IND-STM-02", "supplier_ref": "TOKEN_SUPP_IND_ENERGY", "expected_scope": 2, "expected_category": "purchased_steam"},
+
+  {"id": 24, "activity_type": "district_chilled_water_cooling_system", "unit": "ton_hours", "raw_line_ref": "CHILL-NET-01", "supplier_ref": "TOKEN_SUPP_DIST_COOL", "expected_scope": 2, "expected_category": "purchased_cooling"},
+  {"id": 25, "activity_type": "district_heating_hot_water_supply", "unit": "MMBtu", "raw_line_ref": "DIST-HEAT-05", "supplier_ref": "TOKEN_SUPP_HEAT_NET", "expected_scope": 2, "expected_category": "purchased_heating"},
+
+  {"id": 26, "activity_type": "commercial_domestic_flight_economy", "unit": "passenger.km", "raw_line_ref": "EXP-TRV-001", "supplier_ref": "TOKEN_SUPP_AIRLINE_A", "expected_scope": 3, "expected_category": "business_travel"},
+  {"id": 27, "activity_type": "international_business_flight_long_haul", "unit": "passenger.km", "raw_line_ref": "EXP-TRV-002", "supplier_ref": "TOKEN_SUPP_AIRLINE_B", "expected_scope": 3, "expected_category": "business_travel"},
+  {"id": 28, "activity_type": "conference_hotel_lodging_stay", "unit": "room_nights", "raw_line_ref": "HOTEL-99", "supplier_ref": "TOKEN_SUPP_HOTEL_CHAIN", "expected_scope": 3, "expected_category": "business_travel"},
+  {"id": 29, "activity_type": "executive_business_travel_airfare", "unit": "miles", "raw_line_ref": "TRV-FLT-55", "supplier_ref": "TOKEN_SUPP_AIR_CORP", "expected_scope": 3, "expected_category": "business_travel"},
+  {"id": 30, "activity_type": "client_site_hotel_accommodation", "unit": "nights", "raw_line_ref": "LODG-12", "supplier_ref": "TOKEN_SUPP_SUITES", "expected_scope": 3, "expected_category": "business_travel"},
+
+  {"id": 31, "activity_type": "employee_public_transit_commute_passes", "unit": "trips", "raw_line_ref": "COMM-METRO-01", "supplier_ref": "TOKEN_SUPP_TRANSIT_AUTH", "expected_scope": 3, "expected_category": "employee_commuting"},
+  {"id": 32, "activity_type": "staff_commuter_rail_subway_reimbursement", "unit": "passenger.km", "raw_line_ref": "SUBWAY-PASS-10", "supplier_ref": "TOKEN_SUPP_METRO_RAIL", "expected_scope": 3, "expected_category": "employee_commuting"},
+  {"id": 33, "activity_type": "campus_employee_commuting_shuttle", "unit": "vehicle.km", "raw_line_ref": "COMM-SHUTTLE-03", "supplier_ref": "TOKEN_SUPP_SHUTTLE_BUS", "expected_scope": 3, "expected_category": "employee_commuting"},
+
+  {"id": 34, "activity_type": "third_party_freight_trucking_logistics", "unit": "tonne.km", "raw_line_ref": "LOG-TRK-101", "supplier_ref": "TOKEN_SUPP_FREIGHT_CO", "expected_scope": 3, "expected_category": "upstream_transportation_distribution"},
+  {"id": 35, "activity_type": "ocean_container_shipping_freight", "unit": "TEU.km", "raw_line_ref": "CARGO-SEA-09", "supplier_ref": "TOKEN_SUPP_MAERSK", "expected_scope": 3, "expected_category": "upstream_transportation_distribution"},
+  {"id": 36, "activity_type": "air_cargo_express_courier_shipping", "unit": "tonne.km", "raw_line_ref": "EXP-SHIP-44", "supplier_ref": "TOKEN_SUPP_COURIER", "expected_scope": 3, "expected_category": "upstream_transportation_distribution"},
+  {"id": 37, "activity_type": "inbound_component_freight_transport", "unit": "miles", "raw_line_ref": "INB-TRK-77", "supplier_ref": "TOKEN_SUPP_LOGISTICS", "expected_scope": 3, "expected_category": "upstream_transportation_distribution"},
+  {"id": 38, "activity_type": "courier_parcel_delivery_logistics", "unit": "parcels", "raw_line_ref": "DELIV-PKG-20", "supplier_ref": "TOKEN_SUPP_PARCEL", "expected_scope": 3, "expected_category": "upstream_transportation_distribution"},
+
+  {"id": 39, "activity_type": "municipal_solid_waste_landfill_disposal", "unit": "tonnes", "raw_line_ref": "WST-LF-01", "supplier_ref": "TOKEN_SUPP_WASTE_MGMT", "expected_scope": 3, "expected_category": "waste_generated_in_operations"},
+  {"id": 40, "activity_type": "commercial_cardboard_recycling_service", "unit": "kg", "raw_line_ref": "RECY-PPR-02", "supplier_ref": "TOKEN_SUPP_RECYCLE", "expected_scope": 3, "expected_category": "waste_generated_in_operations"},
+  {"id": 41, "activity_type": "cafeteria_food_waste_compost_processing", "unit": "kg", "raw_line_ref": "COMP-ORG-01", "supplier_ref": "TOKEN_SUPP_ORGANICS", "expected_scope": 3, "expected_category": "waste_generated_in_operations"},
+  {"id": 42, "activity_type": "refuse_collection_and_waste_treatment", "unit": "tonnes", "raw_line_ref": "WST-REF-50", "supplier_ref": "TOKEN_SUPP_MUNICIPAL", "expected_scope": 3, "expected_category": "waste_generated_in_operations"},
+
+  {"id": 43, "activity_type": "manufacturing_assembly_machinery_purchase", "unit": "units", "raw_line_ref": "CAP-MACH-01", "supplier_ref": "TOKEN_SUPP_HEAVY_IND", "expected_scope": 3, "expected_category": "capital_goods"},
+  {"id": 44, "activity_type": "data_center_server_rack_equipment_purchase", "unit": "units", "raw_line_ref": "CAP-HW-10", "supplier_ref": "TOKEN_SUPP_TECH_OEM", "expected_scope": 3, "expected_category": "capital_goods"},
+  {"id": 45, "activity_type": "office_commercial_building_acquisition", "unit": "sq_meters", "raw_line_ref": "REALEST-01", "supplier_ref": "TOKEN_SUPP_PROP_GRP", "expected_scope": 3, "expected_category": "capital_goods"},
+
+  {"id": 46, "activity_type": "management_consulting_advisory_services", "unit": "USD", "raw_line_ref": "INV-CONSULT-01", "supplier_ref": "TOKEN_SUPP_ADVISORY", "expected_scope": 3, "expected_category": "purchased_goods_services"},
+  {"id": 47, "activity_type": "enterprise_saas_cloud_service_subscription", "unit": "USD", "raw_line_ref": "INV-SAAS-99", "supplier_ref": "TOKEN_SUPP_CLOUD_INC", "expected_scope": 3, "expected_category": "purchased_goods_services"},
+  {"id": 48, "activity_type": "external_legal_counsel_services", "unit": "hours", "raw_line_ref": "INV-LEGAL-42", "supplier_ref": "TOKEN_SUPP_LAW_LLP", "expected_scope": 3, "expected_category": "purchased_goods_services"},
+  {"id": 49, "activity_type": "office_supplies_and_stationery_procurement", "unit": "USD", "raw_line_ref": "INV-SUPP-88", "supplier_ref": "TOKEN_SUPP_OFFICE_STORE", "expected_scope": 3, "expected_category": "purchased_goods_services"},
+  {"id": 50, "activity_type": "corporate_event_catering_service", "unit": "USD", "raw_line_ref": "INV-CATER-05", "supplier_ref": "TOKEN_SUPP_CATERING_CO", "expected_scope": 3, "expected_category": "purchased_goods_services"}
+]
