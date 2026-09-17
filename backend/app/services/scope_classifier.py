@@ -53,13 +53,13 @@ class ScopeClassifier:
     ) -> None:
         self.api_key = api_key if api_key is not None else settings.groq_api_key
         self.model = model or settings.groq_model
+        is_placeholder = any(
+            p in (self.api_key or "").lower()
+            for p in ["your_groq", "dummy", "placeholder", "change_me"]
+        )
         if groq_client:
             self._client = groq_client
-        elif (
-            self.api_key
-            and self.api_key.strip()
-            and not self.api_key.startswith("gsk_dummy")
-        ):
+        elif self.api_key and self.api_key.strip() and not is_placeholder:
             self._client = Groq(api_key=self.api_key.strip())
         else:
             self._client = None
