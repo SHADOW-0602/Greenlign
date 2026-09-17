@@ -11,8 +11,9 @@ from collections.abc import Callable
 from dataclasses import dataclass, field
 from typing import Any
 
-# Regex for detecting labeled account, customer, and meter identifiers in unstructured text.
+# Regex for detecting labeled account, customer, meter, and tax identifiers in unstructured text.
 # Matches forms such as 'Account #: 9842-1104', 'Acct: 12345678', 'Meter No: MTR-5544321', etc.
+# Also matches Tax ID, EIN, VAT, and TIN labels.
 # Requires at least one digit in the identifier to avoid capturing non-PII words like 'Summary'.
 ACCOUNT_LABEL_REGEX = re.compile(
     r"(?i)\b(?P<label>"
@@ -22,15 +23,19 @@ ACCOUNT_LABEL_REGEX = re.compile(
     r"|Cust[\s/]*(?:Account|ID|Id|No\.?|Num\.?|Number)"
     r"|Meter[\s/]*(?:ID|Id|No\.?|Num\.?|Number|#)?"
     r"|(?:Contract|Billing|Utility)[\s/]*Account(?:[\s/]*(?:Number|No\.?|Num\.?|ID|Id))?"
+    r"|Tax[\s/]*(?:ID|Id|No\.?|Num\.?|Number)"
+    r"|EIN(?:[\s/]*(?:ID|Id|No\.?|Num\.?|Number))?"
+    r"|VAT(?:[\s/]*(?:ID|Id|No\.?|Num\.?|Number))?"
+    r"|TIN(?:[\s/]*(?:ID|Id|No\.?|Num\.?|Number))?"
     r")"
     r"[\s#:.-]+"
     r"(?P<account>(?!TOKEN_)(?=[A-Za-z0-9\-]*\d)[A-Za-z0-9\-]{5,25}\b)"
 )
 
-# Regex for detecting standalone prefixed account/customer/meter numbers
-# (e.g. ACCT-9842-1104, MTR-5544321).
+# Regex for detecting standalone prefixed account/customer/meter/tax numbers
+# (e.g. ACCT-9842-1104, MTR-5544321, TAX-98421104).
 ACCOUNT_STANDALONE_REGEX = re.compile(
-    r"(?i)\b(?<!TOKEN_)(?:ACCT|ACC|CUST|MTR|METER)[-_][A-Za-z0-9\-]{4,24}\b"
+    r"(?i)\b(?<!TOKEN_)(?:ACCT|ACC|CUST|MTR|METER|TAX|EIN|VAT|TIN)[-_][A-Za-z0-9\-]{4,24}\b"
 )
 
 
@@ -117,7 +122,7 @@ class PIIRedactor:
         if stripped.startswith("TOKEN_ACCT_"):
             return stripped
         normalized = re.sub(r"[\s\-]+", "", stripped).upper()
-        if not normalized:
+        if not normalized or not any(c.isalnum() for c in normalized):
             return "TOKEN_ACCT_UNKNOWN"
         digest = hashlib.sha256(normalized.encode("utf-8")).hexdigest()[:10].upper()
         return f"TOKEN_ACCT_{digest}"
@@ -186,13 +191,18 @@ class PIIRedactor:
                     token_map[supp_token] = supp
 
         for raw_val in list(token_map.values()):
-            if raw_val in redacted:
-                tok = (
-                    cls.tokenize_supplier(raw_val)
-                    if raw_val in suppliers_to_process
-                    else cls.tokenize_account(raw_val)
-                )
-                redacted = redacted.replace(raw_val, tok)
+            tok = (
+                cls.tokenize_supplier(raw_val)
+                if raw_val in suppliers_to_process
+                else cls.tokenize_account(raw_val)
+            )
+            pattern = (
+                _build_supplier_pattern(raw_val)
+                if raw_val in suppliers_to_process
+                else re.compile(rf"(?<!TOKEN_)\b{re.escape(raw_val)}\b")
+            )
+            if pattern.search(redacted):
+                redacted = pattern.sub(tok, redacted)
 
         return RedactedResult(redacted_text=redacted, token_map=token_map)
 

@@ -107,6 +107,8 @@ def test_tokenize_account_empty_and_unknown() -> None:
     assert PIIRedactor.tokenize_account("   ") == "TOKEN_ACCT_UNKNOWN"
     assert PIIRedactor.tokenize_account(" - - ") == "TOKEN_ACCT_UNKNOWN"
     assert PIIRedactor.tokenize_account("---") == "TOKEN_ACCT_UNKNOWN"
+    assert PIIRedactor.tokenize_account(".:;!?") == "TOKEN_ACCT_UNKNOWN"
+    assert PIIRedactor.tokenize_account("@#$%^&*()") == "TOKEN_ACCT_UNKNOWN"
 
 
 def test_pii_redactor_instance_methods() -> None:
@@ -340,3 +342,58 @@ def test_services_package_export() -> None:
 
     assert ExportedPIIRedactor is PIIRedactor
     assert ExportedRedactedResult is RedactedResult
+
+
+def test_redact_text_tax_id_ein_vat_tin_formats() -> None:
+    invoice_text = (
+        "Vendor Details:\n"
+        "Tax ID: 12-3456789\n"
+        "EIN: 98-7654321\n"
+        "VAT Number: GB123456789\n"
+        "TIN: 555-66-7777\n"
+        "Standalone Ref: TAX-99887766\n"
+    )
+    res = PIIRedactor.redact_text(invoice_text)
+
+    assert "12-3456789" not in res.redacted_text
+    assert "98-7654321" not in res.redacted_text
+    assert "GB123456789" not in res.redacted_text
+    assert "555-66-7777" not in res.redacted_text
+    assert "TAX-99887766" not in res.redacted_text
+
+    tax_tok = PIIRedactor.tokenize_account("12-3456789")
+    ein_tok = PIIRedactor.tokenize_account("98-7654321")
+    vat_tok = PIIRedactor.tokenize_account("GB123456789")
+    tin_tok = PIIRedactor.tokenize_account("555-66-7777")
+    standalone_tok = PIIRedactor.tokenize_account("TAX-99887766")
+
+    assert tax_tok in res.redacted_text
+    assert ein_tok in res.redacted_text
+    assert vat_tok in res.redacted_text
+    assert tin_tok in res.redacted_text
+    assert standalone_tok in res.redacted_text
+
+    assert res.token_map[tax_tok] == "12-3456789"
+    assert res.token_map[ein_tok] == "98-7654321"
+    assert res.token_map[vat_tok] == "GB123456789"
+    assert res.token_map[tin_tok] == "555-66-7777"
+    assert res.token_map[standalone_tok] == "TAX-99887766"
+
+
+def test_redact_text_word_bounded_guarantee_preserves_consumption_numbers() -> None:
+    # Account number 12345 shares substring with consumption quantity 123450 kWh
+    text = (
+        "Electric Statement - Account: 12345\n"
+        "Total metered usage for cycle: 123450 kWh at $0.14/kWh.\n"
+        "Billed amount: $17,283.00 for Account: 12345."
+    )
+    res = PIIRedactor.redact_text(text)
+
+    # The account number 12345 must be redacted
+    acct_tok = PIIRedactor.tokenize_account("12345")
+    assert acct_tok in res.redacted_text
+
+    # The consumption number '123450 kWh' must NOT be corrupted to 'TOKEN_ACCT_...0 kWh'
+    assert "123450 kWh" in res.redacted_text
+    # The standalone account number 12345 must not appear anywhere as a distinct word
+    assert re.search(r"\b12345\b", res.redacted_text.replace(acct_tok, "")) is None
