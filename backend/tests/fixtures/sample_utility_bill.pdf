@@ -1,0 +1,81 @@
+%PDF-1.3
+%‚„œ”
+1 0 obj
+<<
+/Producer (pypdf)
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Count 2
+/Kids [ 4 0 R 5 0 R ]
+>>
+endobj
+3 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+4 0 obj
+<<
+/Type /Page
+/Resources <<
+/Font <<
+/F1 <<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+>>
+>>
+/MediaBox [ 0.0 0.0 612 792 ]
+/Parent 2 0 R
+/Contents <<
+/Length 358
+>>
+stream
+BT /F1 12 Tf 14 TL 72 720 Td (Pacific Gas & Electric) Tj T* (Service Address: 77 Beale Street, San Francisco, CA 94105) Tj T* (Account Number: 9842-1104) Tj T* (Billing Period: 01/01/2025 - 01/31/2025) Tj T* (Electric Usage: 1,450.50 kWh @ .145 / kWh    .32) Tj T* (Natural Gas Usage: 120.0 therms @ .25 / therm    .00) Tj T* (Total Amount Due: .32) Tj T* ET
+endstream
+>>
+endobj
+5 0 obj
+<<
+/Type /Page
+/Resources <<
+/Font <<
+/F1 <<
+/Type /Font
+/Subtype /Type1
+/BaseFont /Helvetica
+>>
+>>
+>>
+/MediaBox [ 0.0 0.0 612 792 ]
+/Parent 2 0 R
+/Contents <<
+/Length 351
+>>
+stream
+BT /F1 12 Tf 14 TL 72 720 Td (Pacific Gas & Electric - Additional Operations) Tj T* (Service Address: 77 Beale Street, San Francisco, CA 94105) Tj T* (Account Number: 9842-1104) Tj T* (Billing Period: 01/01/2025 - 01/31/2025) Tj T* (Freight Transport: 3,400.5 tonne.km) Tj T* (Backup Generator Fuel: 500 gallons) Tj T* (Total Page 2 Due: .00) Tj T* ET
+endstream
+>>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000015 00000 n 
+0000000054 00000 n 
+0000000119 00000 n 
+0000000168 00000 n 
+0000000737 00000 n 
+trailer
+<<
+/Size 6
+/Root 3 0 R
+/Info 1 0 R
+>>
+startxref
+1299
+%%EOF
