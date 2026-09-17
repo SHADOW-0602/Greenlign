@@ -38,6 +38,8 @@ def test_script_directory_contains_initial_migration():
     assert revisions["0001_initial_schema"].down_revision is None
     assert "0002_source_document" in revisions
     assert revisions["0002_source_document"].down_revision == "0001_initial_schema"
+    assert "0003_anomaly_flag" in revisions
+    assert revisions["0003_anomaly_flag"].down_revision == "0002_source_document"
 
 
 def test_script_directory_recognizes_head_revision():
@@ -45,8 +47,8 @@ def test_script_directory_recognizes_head_revision():
     config = _get_alembic_config()
     script_dir = ScriptDirectory.from_config(config)
 
-    assert script_dir.get_current_head() == "0002_source_document"
-    assert script_dir.get_heads() == ["0002_source_document"]
+    assert script_dir.get_current_head() == "0003_anomaly_flag"
+    assert script_dir.get_heads() == ["0003_anomaly_flag"]
 
     head_rev = script_dir.get_revision(script_dir.get_current_head())
     assert head_rev is not None

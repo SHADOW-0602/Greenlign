@@ -1,4 +1,5 @@
 from .activity_data import ActivityData
+from .anomaly_flag import AnomalyFlag
 from .audit_log import AuditLogEntry
 from .base import Base
 from .calculation import Calculation
@@ -14,4 +15,5 @@ __all__ = [
     "AuditLogEntry",
     "Disclosure",
     "SourceDocument",
+    "AnomalyFlag",
 ]
