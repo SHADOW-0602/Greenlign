@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 
+from app.api.anomalies import router as anomalies_router
 from app.api.audit import router as audit_router
 from app.api.calculation import router as calculation_router
 from app.api.classification import router as classification_router
@@ -34,4 +35,9 @@ app.include_router(
     disclosures_router,
     prefix="/api/disclosures",
     tags=["disclosures"],
+)
+app.include_router(
+    anomalies_router,
+    prefix="/api/anomalies",
+    tags=["anomalies"],
 )
