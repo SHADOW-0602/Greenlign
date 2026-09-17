@@ -1,3 +1,8 @@
+from .ingestion_service import (
+    IngestionError,
+    IngestionService,
+    UnsupportedFileTypeError,
+)
 from .pdf_parser import (
     ParsedLineItem,
     ParsedPDFActivityItem,
@@ -9,6 +14,8 @@ from .storage_service import StorageService
 from .tabular_parser import ParsedActivityRow, TabularParser, TabularParserError
 
 __all__ = [
+    "IngestionError",
+    "IngestionService",
     "PDFParser",
     "PDFParserError",
     "PIIRedactor",
@@ -19,5 +26,6 @@ __all__ = [
     "StorageService",
     "TabularParser",
     "TabularParserError",
+    "UnsupportedFileTypeError",
 ]
 
