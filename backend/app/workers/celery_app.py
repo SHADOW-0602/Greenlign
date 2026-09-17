@@ -9,6 +9,7 @@ celery_app = Celery(
     include=[
         "app.workers.ingestion_tasks",
         "app.workers.classification_tasks",
+        "app.workers.calculation_tasks",
     ],
 )
 
