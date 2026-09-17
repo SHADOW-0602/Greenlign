@@ -6,7 +6,10 @@ celery_app = Celery(
     "greenlign",
     broker=settings.redis_url,
     backend=settings.redis_url,
-    include=["app.workers.ingestion_tasks"],
+    include=[
+        "app.workers.ingestion_tasks",
+        "app.workers.classification_tasks",
+    ],
 )
 
 celery_app.conf.update(
