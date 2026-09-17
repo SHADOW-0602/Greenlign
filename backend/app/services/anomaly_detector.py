@@ -324,6 +324,36 @@ class AnomalyDetector:
 
         return flags
 
+    def _run_heuristic_fallback(
+        self, narrative_text: str, pct_change_str: str
+    ) -> tuple[list[NarrativeClaimFinding], str, str]:
+        """Heuristic rule-based fallback when LLM is offline or encounters an error."""
+        findings: list[NarrativeClaimFinding] = []
+        overall_status = "CLEAN"
+        summary = "Heuristic evaluation complete."
+
+        m = re.search(
+            r"(\d+(?:\.\d+)?)%\s*(?:reduction|decrease|cut)",
+            narrative_text,
+            re.IGNORECASE,
+        )
+        if m:
+            claimed_val = float(m.group(1))
+            findings.append(
+                NarrativeClaimFinding(
+                    claim_text=m.group(0),
+                    verdict="POTENTIAL_GREENWASHING" if claimed_val > 20 else "SUPPORTED",
+                    claimed_metric=f"{claimed_val}% reduction",
+                    actual_metric=pct_change_str,
+                    discrepancy_explanation=(
+                        "Heuristic review: reported reduction deviates from calculations."
+                    ),
+                )
+            )
+            overall_status = "FLAGGED" if claimed_val > 20 else "CLEAN"
+            summary = "Heuristic check flagged potential greenwashing claim."
+        return findings, overall_status, summary
+
     async def evaluate_narrative_claims(
         self,
         entity_id: uuid.UUID,
@@ -404,7 +434,7 @@ class AnomalyDetector:
         if client:
             try:
                 response = client.chat.completions.create(
-                    model="llama-3.3-70b-versatile",
+                    model=settings.groq_model,
                     messages=[
                         {"role": "system", "content": prompt_system},
                         {"role": "user", "content": prompt_user},
@@ -427,31 +457,14 @@ class AnomalyDetector:
                             discrepancy_explanation=f_data.get("discrepancy_explanation", ""),
                         )
                     )
-            except Exception as e:
-                # Fallback to rule-based parser on network/API failure
-                summary = f"LLM cross-examination fallback: {e}"
-        else:
-            # Fallback heuristic: look for percentage reduction claim
-            m = re.search(
-                r"(\d+(?:\.\d+)?)%\s*(?:reduction|decrease|cut)",
-                narrative_text,
-                re.IGNORECASE,
-            )
-            if m:
-                claimed_val = float(m.group(1))
-                # If claimed reduction while actual change was positive or < claimed_val/2
-                findings.append(
-                    NarrativeClaimFinding(
-                        claim_text=m.group(0),
-                        verdict="POTENTIAL_GREENWASHING" if claimed_val > 20 else "SUPPORTED",
-                        claimed_metric=f"{claimed_val}% reduction",
-                        actual_metric=pct_change_str,
-                        discrepancy_explanation=(
-                            "Heuristic review: reported reduction deviates from calculations."
-                        ),
-                    )
+            except Exception:
+                findings, overall_status, summary = self._run_heuristic_fallback(
+                    narrative_text, pct_change_str
                 )
-                overall_status = "FLAGGED" if claimed_val > 20 else "CLEAN"
+        else:
+            findings, overall_status, summary = self._run_heuristic_fallback(
+                narrative_text, pct_change_str
+            )
 
         # 3. If greenwashing or contradiction is detected, persist an AnomalyFlag
         flag_id: uuid.UUID | None = None
