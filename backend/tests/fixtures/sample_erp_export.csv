@@ -1,0 +1,4 @@
+﻿Transaction Date,Vendor Name,Activity Category,Consumption,UOM,Facility Location,Invoice Number
+2025-01-15,Consolidated Edison,electricity_purchase,14250.00,kWh,NY,INV-88901
+2025-01-20,National Grid Energy,natural_gas_combustion,820.50,therms,MA,INV-88902
+2025-02-05,Schneider National Logistics,freight_road,3400.00,tonne.km,US,INV-88903
