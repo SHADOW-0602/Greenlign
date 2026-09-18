@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Greenlign — Enterprise Carbon Accounting &amp; ESG Intelligence Platform</title>
+<!-- Google Fonts: Inter & JetBrains Mono -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols Outlined -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "surface-variant": "#313441",
+            "inverse-on-surface": "#2c303c",
+            "on-tertiary": "#003825",
+            "outline-variant": "#3c4a42",
+            "surface-dim": "#0f131e",
+            "on-primary-fixed-variant": "#005236",
+            "on-background": "#dfe2f2",
+            "on-secondary-fixed": "#001f26",
+            "surface-container-high": "#262a36",
+            "surface-container-lowest": "#0a0e19",
+            "error-container": "#93000a",
+            "surface-tint": "#4edea3",
+            "on-surface": "#dfe2f2",
+            "surface": "#0f131e",
+            "secondary": "#4cd7f6",
+            "on-primary-fixed": "#002113",
+            "primary-fixed-dim": "#4edea3",
+            "error": "#ffb4ab",
+            "secondary-fixed-dim": "#4cd7f6",
+            "on-secondary-container": "#00424e",
+            "tertiary": "#45dfa4",
+            "on-error-container": "#ffdad6",
+            "surface-container-highest": "#313441",
+            "on-tertiary-fixed": "#002114",
+            "inverse-primary": "#006c49",
+            "on-error": "#690005",
+            "secondary-fixed": "#acedff",
+            "on-secondary": "#003640",
+            "primary": "#4edea3",
+            "on-secondary-fixed-variant": "#004e5c",
+            "on-tertiary-container": "#00422c",
+            "tertiary-fixed": "#68fcbf",
+            "background": "#0f131e",
+            "tertiary-container": "#00b982",
+            "on-surface-variant": "#bbcabf",
+            "on-tertiary-fixed-variant": "#005137",
+            "on-primary": "#003824",
+            "surface-container": "#1b1f2b",
+            "on-primary-container": "#00422b",
+            "surface-bright": "#353945",
+            "tertiary-fixed-dim": "#45dfa4",
+            "primary-fixed": "#6ffbbe",
+            "primary-container": "#10b981",
+            "inverse-surface": "#dfe2f2",
+            "outline": "#86948a",
+            "surface-container-low": "#171b27",
+            "secondary-container": "#03b5d3"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "spacing": {
+            "space-xl": "2.5rem",
+            "space-sm": "0.5rem",
+            "space-xs": "0.25rem",
+            "margin": "2rem",
+            "gutter-mobile": "1rem",
+            "margin-mobile": "1rem",
+            "space-md": "1rem",
+            "gutter": "1.5rem",
+            "space-lg": "1.5rem"
+          },
+          "fontFamily": {
+            "label-md": ["Inter"],
+            "body-md": ["Inter"],
+            "headline-xl-mobile": ["Inter"],
+            "headline-xl": ["Inter"],
+            "headline-md": ["Inter"],
+            "headline-sm": ["Inter"],
+            "mono-badge": ["JetBrains Mono"],
+            "body-lg": ["Inter"],
+            "headline-lg": ["Inter"],
+            "headline-lg-mobile": ["Inter"],
+            "mono-metric-md": ["JetBrains Mono"],
+            "body-sm": ["Inter"],
+            "mono-metric-lg": ["JetBrains Mono"]
+          },
+          "fontSize": {
+            "label-md": ["0.75rem", { "lineHeight": "1rem", "letterSpacing": "0.02em", "fontWeight": "500" }],
+            "body-md": ["0.875rem", { "lineHeight": "1.375rem", "letterSpacing": "-0.006em", "fontWeight": "400" }],
+            "headline-xl-mobile": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-xl": ["3rem", { "lineHeight": "3.5rem", "letterSpacing": "-0.03em", "fontWeight": "600" }],
+            "headline-md": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "headline-sm": ["1.125rem", { "lineHeight": "1.625rem", "letterSpacing": "-0.015em", "fontWeight": "500" }],
+            "mono-badge": ["0.6875rem", { "lineHeight": "0.875rem", "letterSpacing": "0.04em", "fontWeight": "500" }],
+            "body-lg": ["1rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.011em", "fontWeight": "400" }],
+            "headline-lg": ["2rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "headline-lg-mobile": ["1.5rem", { "lineHeight": "2rem", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "mono-metric-md": ["1.25rem", { "lineHeight": "1.5rem", "letterSpacing": "-0.02em", "fontWeight": "500" }],
+            "body-sm": ["0.75rem", { "lineHeight": "1.125rem", "letterSpacing": "0em", "fontWeight": "400" }],
+            "mono-metric-lg": ["2.25rem", { "lineHeight": "2.5rem", "letterSpacing": "-0.04em", "fontWeight": "500" }]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .specular-rim {
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+    }
+    .specular-glow {
+      box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08), 0 8px 32px -4px rgba(0, 0, 0, 0.5);
+    }
+    .beacon-pulse {
+      animation: pulseGlow 2.5s infinite ease-in-out;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 6px rgba(78, 222, 163, 0.8)); }
+    }
+    input[type=range]::-webkit-slider-thumb {
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 9999px;
+      background: #4edea3;
+      cursor: pointer;
+      box-shadow: 0 0 10px #10b981;
+      border: 2px solid #0a0e19;
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body-md antialiased min-h-screen selection:bg-primary-container selection:text-on-primary-container flex flex-col">
+<!-- Ambient Glow Canvas Mesh (Visual Accent) -->
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+<div class="absolute -top-48 left-1/4 w-[600px] h-[600px] bg-primary-container/10 rounded-full blur-[140px]"></div>
+<div class="absolute top-1/3 -right-48 w-[500px] h-[500px] bg-secondary-container/10 rounded-full blur-[160px]"></div>
+<div class="absolute -bottom-48 left-1/3 w-[700px] h-[500px] bg-surface-variant/20 rounded-full blur-[150px]"></div>
+</div>
+<!-- SHARED COMPONENT: TopNavBar -->
+<header class="bg-surface-container-lowest/80 backdrop-blur-md border-b border-outline-variant/40 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.07)] docked full-width top-0 z-50 sticky">
+<div class="w-full px-6 h-16 flex items-center justify-between gap-4">
+<!-- Brand & Entity Selector -->
+<div class="flex items-center gap-6">
+<a class="font-headline-md text-headline-md font-semibold tracking-tight text-primary flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">eco</span>
+<span class="tracking-tight text-on-surface font-headline-md">Greenlign</span>
+</a>
+<!-- Entity Selector Dropdown -->
+<div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-lg bg-surface-container border border-outline-variant/50 hover:border-primary/50 transition-colors cursor-pointer group">
+<span class="w-2 h-2 rounded-full bg-primary beacon-pulse"></span>
+<span class="font-label-md text-label-md text-on-surface font-medium">Acme Global Corp — FY2025</span>
+<span class="font-mono-badge text-mono-badge px-1.5 py-0.5 rounded bg-surface-variant text-on-surface-variant">SEC Ready</span>
+<span class="material-symbols-outlined text-on-surface-variant text-base group-hover:text-primary transition-colors">expand_more</span>
+</div>
+<!-- Search Bar (on_left as specified) -->
+<div class="relative hidden xl:block w-72">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-sm">search</span>
+<input class="w-full pl-9 pr-12 py-1.5 bg-surface-container-lowest border border-outline-variant/50 rounded-lg text-body-sm font-body-sm text-on-surface placeholder:text-outline focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary/40 transition-all" placeholder="Search telemetry, offsets, suppliers..." type="text"/>
+<kbd class="absolute right-2.5 top-2 px-1.5 py-0.5 rounded bg-surface-variant text-[10px] font-mono-badge text-on-surface-variant border border-outline-variant/60">⌘K</kbd>
+</div>
+</div>
+<!-- Navigation Links (Active Mapping: Executive Overview) -->
+<nav class="hidden md:flex items-center gap-6 h-full">
+<a class="text-primary border-b-2 border-primary font-medium py-5 text-body-md font-body-md transition-colors" href="#">Executive Overview</a>
+<a class="text-on-surface-variant hover:text-on-surface py-5 transition-colors text-body-md font-body-md" href="#">Emissions Ledger</a>
+<a class="text-on-surface-variant hover:text-on-surface py-5 transition-colors text-body-md font-body-md" href="#">Decarbonization Levers</a>
+<a class="text-on-surface-variant hover:text-on-surface py-5 transition-colors text-body-md font-body-md" href="#">Audit &amp; Compliance</a>
+</nav>
+<!-- Trailing Controls & Executive Profile -->
+<div class="flex items-center gap-3">
+<!-- Cryptographic Ledger Status Badge -->
+<div class="hidden sm:flex items-center gap-2 px-2.5 py-1 rounded-full bg-primary-container/10 border border-primary/30 text-primary">
+<span class="material-symbols-outlined text-xs text-primary" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-mono-badge text-mono-badge tracking-wider font-semibold">Verified: Block #8,941,204</span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-ping"></span>
+</div>
+<!-- Trailing Icon Actions -->
+<div class="flex items-center gap-1 border-l border-outline-variant/40 pl-2">
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-primary transition-all duration-150 active:scale-[0.98]" title="Notifications">
+<span class="material-symbols-outlined text-xl">notifications</span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-primary transition-all duration-150 active:scale-[0.98]" title="Tune Parameters">
+<span class="material-symbols-outlined text-xl">tune</span>
+</button>
+<button class="p-2 rounded-lg text-on-surface-variant hover:bg-surface-variant/50 hover:text-primary transition-all duration-150 active:scale-[0.98]" title="Audit History">
+<span class="material-symbols-outlined text-xl">history_edu</span>
+</button>
+</div>
+<!-- Trailing Primary Action: Export Board Deck -->
+<button class="hidden lg:flex items-center gap-2 px-3.5 py-2 rounded-lg bg-primary hover:bg-tertiary-fixed text-on-primary font-label-md text-label-md font-semibold transition-all duration-150 shadow-[0_0_20px_-2px_rgba(78,222,163,0.35)] active:scale-[0.98]">
+<span class="material-symbols-outlined text-base">ios_share</span>
+<span>Export Board Deck</span>
+</button>
+<!-- Executive Avatar -->
+<div class="flex items-center gap-2 pl-2 border-l border-outline-variant/40">
+<div class="relative">
+<img class="w-8 h-8 rounded-full border border-primary/40 object-cover" data-alt="Close-up professional portrait of Elena Rostova, Chief Sustainability Officer, wearing modern executive business attire against an ultra-clean corporate glass office with green telemetry screens softly blurred in the background. The lighting is crisp, cinematic, high-contrast, conveying sovereign authority, intelligence, and modern ESG governance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzvJUqxBB-VtQmsXhL0RveMxUnSuzkg7qar1Fg1MOhFwrB0BjLfM6OKpDNLSZVFA3r-m6V-sSZQK2hPx8QuRaxBO9JtYL6LYAWkYZfEIG9xDzT6R9VOIBSPOolzssCcLF16Q2KOqJrtFYQU4IczO2yd7kQP1LXnkWwkvFj2uOKzRninuDaJpR3ZhCz0On69tHt75fqTqTm6ZCKNtK5BWSR2LuPz0_ZoGrnoVFuFAT_iLrCPk4kRcqvbwS79UP-FzU4ctVBA_UCrzHR"/>
+<span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-primary rounded-full border-2 border-surface-container-lowest"></span>
+</div>
+<div class="hidden xl:flex flex-col">
+<span class="font-label-md text-label-md font-medium text-on-surface leading-tight">Elena Rostova</span>
+<span class="font-mono-badge text-mono-badge text-on-surface-variant leading-none">Chief Sustainability Officer</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Executive Layout Container -->
+<main class="flex-1 max-w-[1600px] w-full mx-auto px-4 md:px-6 py-6 space-y-6 z-10">
+<!-- Sub-header Ribbon: Filter Controls & Sovereign Timeframe -->
+<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-2 border-b border-outline-variant/30">
+<div>
+<div class="flex items-center gap-2">
+<span class="font-mono-badge text-mono-badge text-primary bg-primary-container/10 px-2 py-0.5 rounded border border-primary/20">GHG PROTOCOL CORPORATE STANDARD</span>
+<span class="text-outline-variant">•</span>
+<span class="font-mono-badge text-mono-badge text-on-surface-variant">TELEMETRY LATENCY: 142MS</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg font-semibold tracking-tight text-on-surface mt-1">Enterprise Carbon Ledger &amp; Pathways</h1>
+</div>
+<!-- Time Range Pill Selector -->
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant/40 p-1 rounded-xl specular-rim">
+<button class="px-3 py-1 rounded-lg bg-primary-container text-on-primary-container font-label-md text-label-md font-medium shadow-sm transition-colors">YTD (Active)</button>
+<button class="px-3 py-1 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md font-medium transition-colors">Q3 2025</button>
+<button class="px-3 py-1 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md font-medium transition-colors">2024</button>
+<button class="px-3 py-1 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md text-label-md font-medium transition-colors flex items-center gap-1">
+<span>Custom</span>
+<span class="material-symbols-outlined text-xs">calendar_today</span>
+</button>
+</div>
+</div>
+<!-- SECTION 2: Executive KPI Cards (Row of 5 frosted glass cards) -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+<!-- Card 1: Total Gross Emissions -->
+<div class="bg-surface-container-low/70 backdrop-blur-md border border-outline-variant/50 rounded-xl p-4 specular-rim hover:border-primary/40 hover:bg-surface-container/80 transition-all duration-200 group">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="font-label-md text-label-md font-medium tracking-wide">Total Gross Emissions</span>
+<span class="material-symbols-outlined text-primary text-lg group-hover:scale-110 transition-transform">cloud</span>
+</div>
+<div class="flex items-baseline gap-1 font-mono-metric-lg text-mono-metric-lg font-semibold text-on-surface">
+          12,450<span class="text-headline-sm font-headline-sm text-on-surface-variant">.80</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">tCO2e (Net FY2025)</div>
+<div class="mt-3 pt-3 border-t border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-1 font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-primary-container/20 text-primary border border-primary/30">
+<span class="material-symbols-outlined text-xs">trending_down</span>
+            -14.2% YoY
+          </div>
+<!-- Micro Sparkline SVG -->
+<svg class="w-16 h-6 stroke-primary fill-none" viewbox="0 0 64 24">
+<path d="M0,20 Q16,18 24,14 T48,8 T64,4" stroke-linecap="round" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- Card 2: Scope 1 Direct Combustion -->
+<div class="bg-surface-container-low/70 backdrop-blur-md border border-outline-variant/50 rounded-xl p-4 specular-rim hover:border-primary/40 hover:bg-surface-container/80 transition-all duration-200 group">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="font-label-md text-label-md font-medium tracking-wide">Scope 1 Direct</span>
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary-fixed beacon-pulse"></span>
+</div>
+<div class="flex items-baseline gap-1 font-mono-metric-lg text-mono-metric-lg font-semibold text-on-surface">
+          2,140<span class="text-headline-sm font-headline-sm text-on-surface-variant">.50</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">tCO2e • 17.2% of footprint</div>
+<div class="mt-3 pt-3 border-t border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-1 font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-surface-variant text-primary border border-primary/20">
+<span class="material-symbols-outlined text-xs">check_circle</span>
+            On Track
+          </div>
+<span class="font-mono-badge text-mono-badge text-on-surface-variant">Facility Gas / Fleets</span>
+</div>
+</div>
+<!-- Card 3: Scope 2 Purchased Electricity -->
+<div class="bg-surface-container-low/70 backdrop-blur-md border border-outline-variant/50 rounded-xl p-4 specular-rim hover:border-secondary/40 hover:bg-surface-container/80 transition-all duration-200 group">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="font-label-md text-label-md font-medium tracking-wide">Scope 2 Purchased</span>
+<span class="material-symbols-outlined text-secondary text-lg group-hover:scale-110 transition-transform">bolt</span>
+</div>
+<div class="flex items-baseline gap-1 font-mono-metric-lg text-mono-metric-lg font-semibold text-on-surface">
+          3,890<span class="text-headline-sm font-headline-sm text-on-surface-variant">.20</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">tCO2e • 100% Market-based</div>
+<div class="mt-3 pt-3 border-t border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-1 font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-secondary-container/20 text-secondary border border-secondary/30">
+<span class="material-symbols-outlined text-xs">trending_down</span>
+            -24.8% YoY
+          </div>
+<span class="font-mono-badge text-mono-badge text-secondary">PPA Active</span>
+</div>
+</div>
+<!-- Card 4: Scope 3 Supply Chain & Travel -->
+<div class="bg-surface-container-low/70 backdrop-blur-md border border-outline-variant/50 rounded-xl p-4 specular-rim hover:border-primary/40 hover:bg-surface-container/80 transition-all duration-200 group">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="font-label-md text-label-md font-medium tracking-wide">Scope 3 Value Chain</span>
+<span class="material-symbols-outlined text-tertiary-container text-lg group-hover:scale-110 transition-transform">hub</span>
+</div>
+<div class="flex items-baseline gap-1 font-mono-metric-lg text-mono-metric-lg font-semibold text-on-surface">
+          6,420<span class="text-headline-sm font-headline-sm text-on-surface-variant">.10</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">tCO2e • 51.6% of footprint</div>
+<div class="mt-3 pt-3 border-t border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-1 font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-surface-variant text-on-surface-variant border border-outline-variant/40">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+            84% Primary Data
+          </div>
+<span class="font-mono-badge text-mono-badge text-primary">+2.1% YoY</span>
+</div>
+</div>
+<!-- Card 5: Audit Provenance -->
+<div class="bg-surface-container-low/70 backdrop-blur-md border border-outline-variant/50 rounded-xl p-4 specular-rim hover:border-primary/40 hover:bg-surface-container/80 transition-all duration-200 group">
+<div class="flex items-center justify-between text-on-surface-variant mb-2">
+<span class="font-label-md text-label-md font-medium tracking-wide">Audit Provenance</span>
+<span class="material-symbols-outlined text-primary text-lg group-hover:scale-110 transition-transform">shield_with_heart</span>
+</div>
+<div class="flex items-baseline gap-1 font-mono-metric-lg text-mono-metric-lg font-semibold text-primary">
+          98<span class="text-headline-sm font-headline-sm text-primary">.4%</span>
+</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant">Verified Coverage • Sub-200ms</div>
+<div class="mt-3 pt-3 border-t border-outline-variant/30 flex items-center justify-between">
+<div class="flex items-center gap-1 font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-primary-container/20 text-primary border border-primary/30">
+            SEC / CSRD
+          </div>
+<span class="font-mono-badge text-mono-badge text-on-surface-variant">PwC Attested</span>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Primary Analytics Section (Emissions vs SBTi Pathway & Scope Donut) -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left (65% -> col-span-8): Emissions vs Net-Zero SBTi Pathway (2020-2030) -->
+<div class="lg:col-span-8 bg-surface-container-low/70 backdrop-blur-md border border-outline-variant/50 rounded-xl p-6 specular-glow flex flex-col justify-between">
+<div>
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Emissions vs Net-Zero SBTi Pathway</h2>
+<span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-primary-container/15 text-primary border border-primary/30">1.5°C ALIGNED</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">Empirical accounting vs Science Based Targets initiative glidepath (2020 — 2030)</p>
+</div>
+<!-- Trajectory Legend Toggle -->
+<div class="flex items-center gap-3 font-mono-badge text-mono-badge">
+<span class="flex items-center gap-1.5 text-on-surface">
+<span class="w-3 h-1 bg-primary rounded-full"></span> Historical
+              </span>
+<span class="flex items-center gap-1.5 text-secondary">
+<span class="w-3 h-0.5 border-b border-dashed border-secondary"></span> SBTi Target
+              </span>
+<span class="flex items-center gap-1.5 text-tertiary-fixed-dim">
+<span class="w-3 h-0.5 border-b border-dotted border-tertiary-fixed-dim"></span> AI Forecast
+              </span>
+</div>
+</div>
+<!-- Chart Area with Crosshair Hover Preview Tooltip -->
+<div class="relative w-full h-72 pt-4">
+<!-- SVG Vector Chart -->
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 800 240">
+<defs>
+<!-- Area Gradient for Historical Emissions -->
+<lineargradient id="emeraldAreaGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#10B981" stop-opacity="0.32"></stop>
+<stop offset="100%" stop-color="#10B981" stop-opacity="0.00"></stop>
+</lineargradient>
+<!-- Area Gradient for Forecast -->
+<lineargradient id="aiForecastGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#4cd7f6" stop-opacity="0.18"></stop>
+<stop offset="100%" stop-color="#4cd7f6" stop-opacity="0.00"></stop>
+</lineargradient>
+</defs>
+<!-- Grid Horizontal Reference Lines -->
+<line stroke="#313441" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="800" y1="40" y2="40"></line>
+<line stroke="#313441" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="800" y1="100" y2="100"></line>
+<line stroke="#313441" stroke-dasharray="3 3" stroke-width="1" x1="0" x2="800" y1="160" y2="160"></line>
+<line stroke="#3c4a42" stroke-width="1" x1="0" x2="800" y1="220" y2="220"></line>
+<!-- Target Trajectory (SBTi 1.5C Glidepath) - Dashed Teal Line -->
+<path d="M0,50 Q200,90 400,120 T600,165 T800,210" fill="none" stroke="#4cd7f6" stroke-dasharray="6 4" stroke-width="2.5"></path>
+<!-- Projected Trajectory (AI Forecast) - Dotted Mint Line -->
+<path d="M400,105 Q500,130 600,150 T800,185" fill="none" stroke="#68fcbf" stroke-dasharray="3 3" stroke-width="2"></path>
+<polygon fill="url(#aiForecastGradient)" points="400,105 500,130 600,150 800,185 800,220 400,220"></polygon>
+<!-- Historical Actuals Area & Curve (2020 to 2025) -->
+<polygon fill="url(#emeraldAreaGradient)" points="0,30 80,45 160,55 240,70 320,85 400,105 400,220 0,220"></polygon>
+<path d="M0,30 C80,45 160,55 240,70 S320,85 400,105" fill="none" stroke="#10b981" stroke-width="3.5"></path>
+<!-- Key Data Anchor Points -->
+<circle class="border border-surface-container" cx="0" cy="30" fill="#10b981" r="4"></circle>
+<circle cx="160" cy="55" fill="#10b981" r="4"></circle>
+<circle cx="320" cy="85" fill="#10b981" r="4"></circle>
+<!-- Active Year 2025 Cursor Point -->
+<circle cx="400" cy="105" fill="#4edea3" r="6" stroke="#0f131e" stroke-width="2.5"></circle>
+<line opacity="0.8" stroke="#4edea3" stroke-dasharray="4 2" stroke-width="1.5" x1="400" x2="400" y1="0" y2="220"></line>
+</svg>
+<!-- Crosshair Interactive Tooltip Floating Badge -->
+<div class="absolute left-1/2 -translate-x-12 top-6 bg-surface-container/95 border border-primary/40 rounded-lg p-3 backdrop-blur-xl shadow-2xl z-20 pointer-events-none">
+<div class="flex items-center justify-between gap-4">
+<span class="font-mono-badge text-mono-badge text-primary font-semibold">2025 CURRENT AUDIT</span>
+<span class="font-mono-badge text-mono-badge text-on-surface-variant">FY-YTD</span>
+</div>
+<div class="mt-1 flex items-baseline gap-2">
+<span class="font-mono-metric-md text-mono-metric-md font-semibold text-on-surface">12,450 tCO2e</span>
+<span class="font-body-sm text-body-sm text-outline">vs 13,200 Target</span>
+</div>
+<div class="mt-1 flex items-center gap-1 font-mono-badge text-mono-badge text-primary">
+<span class="material-symbols-outlined text-xs">verified</span>
+                -5.7% Ahead of 1.5°C SBTi Target
+              </div>
+</div>
+</div>
+<!-- X-Axis Labels -->
+<div class="flex justify-between items-center text-on-surface-variant font-mono-badge text-mono-badge pt-3 border-t border-outline-variant/30">
+<span>2020 (Base)</span>
+<span>2021</span>
+<span>2022</span>
+<span>2023</span>
+<span>2024</span>
+<span class="text-primary font-semibold">2025 (Active)</span>
+<span>2026 (Est)</span>
+<span>2027 (PPA)</span>
+<span>2028</span>
+<span>2029</span>
+<span class="text-secondary font-semibold">2030 (Target)</span>
+</div>
+</div>
+<!-- Baseline Diagnostic Meta -->
+<div class="mt-4 pt-3 flex flex-wrap items-center justify-between text-body-sm font-body-sm text-on-surface-variant gap-2 bg-surface-container-lowest/50 px-3.5 py-2 rounded-lg border border-outline-variant/30">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">psychology</span>
+<span>AI Scenario Projection indicates <strong class="text-on-surface">Net-Zero 2038 achievement</strong> with planned PPA &amp; supplier decarbonization levers.</span>
+</div>
+<button class="text-primary hover:underline font-label-md text-label-md flex items-center gap-1">
+<span>Model Details</span>
+<span class="material-symbols-outlined text-xs">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Right (35% -> col-span-4): GHG Protocol Scope Breakdown Donut -->
+<div class="lg:col-span-4 bg-surface-container-low/70 backdrop-blur-md border border-outline-variant/50 rounded-xl p-6 specular-glow flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<div>
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">GHG Protocol Scope Breakdown</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Standardized ISO 14064 attribution</p>
+</div>
+<button class="p-1.5 rounded bg-surface-container hover:bg-surface-variant text-on-surface-variant transition-colors" title="Filter by Scope">
+<span class="material-symbols-outlined text-lg">filter_alt</span>
+</button>
+</div>
+<!-- SVG Donut Representation -->
+<div class="relative flex items-center justify-center my-3">
+<svg class="w-52 h-52 -rotate-90" viewbox="0 0 100 100">
+<!-- Scope 3 (51.6%) - Outer stroke length 314 * 0.516 = 162.0 -->
+<circle class="transition-all hover:opacity-90" cx="50" cy="50" fill="none" r="38" stroke="#059669" stroke-dasharray="162 314" stroke-dashoffset="0" stroke-width="12"></circle>
+<!-- Scope 2 (31.2%) - Outer stroke length 314 * 0.312 = 98.0 -->
+<circle class="transition-all hover:opacity-90" cx="50" cy="50" fill="none" r="38" stroke="#10b981" stroke-dasharray="98 314" stroke-dashoffset="-162" stroke-width="12"></circle>
+<!-- Scope 1 (17.2%) - Outer stroke length 314 * 0.172 = 54.0 -->
+<circle class="transition-all hover:opacity-90" cx="50" cy="50" fill="none" r="38" stroke="#4edea3" stroke-dasharray="54 314" stroke-dashoffset="-260" stroke-width="12"></circle>
+</svg>
+<!-- Center Metric Summary -->
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+<span class="font-mono-badge text-mono-badge text-on-surface-variant uppercase tracking-wider">Total Ledger</span>
+<span class="font-mono-metric-md text-mono-metric-md font-bold text-on-surface">12,451</span>
+<span class="font-body-sm text-body-sm text-primary">tCO2e FY25</span>
+</div>
+</div>
+<!-- Legend Rows with Confidence & YoY Metrics -->
+<div class="space-y-2.5 mt-4">
+<!-- Scope 3 Row -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-lowest/60 border border-outline-variant/30 hover:border-primary/30 transition-colors">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-[#059669]"></span>
+<div>
+<div class="font-label-md text-label-md font-medium text-on-surface">Scope 3: Value Chain</div>
+<div class="font-mono-badge text-mono-badge text-on-surface-variant">51.6% • 84% Primary data</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-mono-metric-md text-body-md font-semibold text-on-surface">6,420 t</div>
+<div class="font-mono-badge text-mono-badge text-primary">+2.1% YoY</div>
+</div>
+</div>
+<!-- Scope 2 Row -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-lowest/60 border border-outline-variant/30 hover:border-primary/30 transition-colors">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-primary-container"></span>
+<div>
+<div class="font-label-md text-label-md font-medium text-on-surface">Scope 2: Electricity</div>
+<div class="font-mono-badge text-mono-badge text-on-surface-variant">31.2% • 100% Market-based</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-mono-metric-md text-body-md font-semibold text-on-surface">3,890 t</div>
+<div class="font-mono-badge text-primary">-24.8% YoY</div>
+</div>
+</div>
+<!-- Scope 1 Row -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-lowest/60 border border-outline-variant/30 hover:border-primary/30 transition-colors">
+<div class="flex items-center gap-2.5">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<div>
+<div class="font-label-md text-label-md font-medium text-on-surface">Scope 1: Direct Combustion</div>
+<div class="font-mono-badge text-mono-badge text-on-surface-variant">17.2% • Continuous CEMS</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-mono-metric-md text-body-md font-semibold text-on-surface">2,141 t</div>
+<div class="font-mono-badge text-on-surface-variant">-3.4% YoY</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-3 text-center">
+<span class="font-mono-badge text-mono-badge text-outline">Third-party GHG Protocol Verification Hash: 0x9f4a...e12d</span>
+</div>
+</div>
+</section>
+<!-- SECTION 4: Hotspots & Decarbonization Levers (2-column layout) -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Left Column (col-span-6): Top Emission Hotspots Table -->
+<div class="lg:col-span-6 bg-surface-container-low/70 backdrop-blur-md border border-outline-variant/50 rounded-xl p-6 specular-glow">
+<div class="flex items-center justify-between mb-4">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Top Emission Hotspots</h2>
+<span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-error/10 text-error border border-error/30">ATTENTION REQUIRED</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Ranked operational emission nodes prioritized for mitigation</p>
+</div>
+<button class="text-on-surface-variant hover:text-on-surface font-label-md text-label-md flex items-center gap-1">
+<span>View All (28)</span>
+<span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+<!-- Hotspots Precision Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/40 text-on-surface-variant font-label-md text-label-md uppercase tracking-wider">
+<th class="pb-3 pl-2 font-medium">Rank &amp; Source</th>
+<th class="pb-3 font-medium">Scope</th>
+<th class="pb-3 text-right font-medium">Volume</th>
+<th class="pb-3 text-right font-medium">YoY Delta</th>
+<th class="pb-3 text-right pr-2 font-medium">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/20 font-body-sm text-body-sm">
+<!-- Item 1: Business Travel (Long-haul Air) -->
+<tr class="hover:bg-surface-variant/30 transition-colors group">
+<td class="py-3.5 pl-2 font-medium text-on-surface flex items-center gap-2">
+<span class="font-mono-badge text-mono-badge text-outline">#1</span>
+<div>
+<div class="text-on-surface font-medium">Business Travel (Long-haul Air)</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant text-[11px]">842 transcontinental flight segments</div>
+</div>
+</td>
+<td class="py-3.5 text-on-surface-variant font-mono-badge text-mono-badge">Scope 3.6</td>
+<td class="py-3.5 text-right font-mono-badge text-mono-badge font-semibold text-on-surface">2,410 t</td>
+<td class="py-3.5 text-right font-mono-badge text-mono-badge text-error">+8.4% YoY</td>
+<td class="py-3.5 text-right pr-2">
+<span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-error-container/40 text-error border border-error/30">High Severity</span>
+</td>
+</tr>
+<!-- Item 2: Purchased Electricity (US-West Grid) -->
+<tr class="hover:bg-surface-variant/30 transition-colors group">
+<td class="py-3.5 pl-2 font-medium text-on-surface flex items-center gap-2">
+<span class="font-mono-badge text-mono-badge text-outline">#2</span>
+<div>
+<div class="text-on-surface font-medium">Purchased Electricity (US-West Grid)</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant text-[11px]">Silicon Valley &amp; Hillsboro Data Centers</div>
+</div>
+</td>
+<td class="py-3.5 text-on-surface-variant font-mono-badge text-mono-badge">Scope 2</td>
+<td class="py-3.5 text-right font-mono-badge text-mono-badge font-semibold text-on-surface">1,940 t</td>
+<td class="py-3.5 text-right font-mono-badge text-mono-badge text-primary">-18.2% YoY</td>
+<td class="py-3.5 text-right pr-2">
+<span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-surface-variant text-secondary border border-secondary/30">Optimizing</span>
+</td>
+</tr>
+<!-- Item 3: Tier 1 Supplier Logistics (Ocean Freight) -->
+<tr class="hover:bg-surface-variant/30 transition-colors group">
+<td class="py-3.5 pl-2 font-medium text-on-surface flex items-center gap-2">
+<span class="font-mono-badge text-mono-badge text-outline">#3</span>
+<div>
+<div class="text-on-surface font-medium">Tier 1 Supplier Logistics (Ocean Freight)</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant text-[11px]">Rotterdam — Singapore Corridor</div>
+</div>
+</td>
+<td class="py-3.5 text-on-surface-variant font-mono-badge text-mono-badge">Scope 3.4</td>
+<td class="py-3.5 text-right font-mono-badge text-mono-badge font-semibold text-on-surface">1,680 t</td>
+<td class="py-3.5 text-right font-mono-badge text-mono-badge text-primary">-4.1% YoY</td>
+<td class="py-3.5 text-right pr-2">
+<span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-primary-container/20 text-primary border border-primary/30">Audited</span>
+</td>
+</tr>
+<!-- Item 4: Data Center Colocation Scope 2 -->
+<tr class="hover:bg-surface-variant/30 transition-colors group">
+<td class="py-3.5 pl-2 font-medium text-on-surface flex items-center gap-2">
+<span class="font-mono-badge text-mono-badge text-outline">#4</span>
+<div>
+<div class="text-on-surface font-medium">Data Center Colocation Scope 2</div>
+<div class="text-body-sm font-body-sm text-on-surface-variant text-[11px]">Frankfurt FRA-1 Sovereign Pods</div>
+</div>
+</td>
+<td class="py-3.5 text-on-surface-variant font-mono-badge text-mono-badge">Scope 2</td>
+<td class="py-3.5 text-right font-mono-badge text-mono-badge font-semibold text-on-surface">890 t</td>
+<td class="py-3.5 text-right font-mono-badge text-mono-badge text-primary">-12.0% YoY</td>
+<td class="py-3.5 text-right pr-2">
+<span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-secondary-container/20 text-secondary border border-secondary/30">PPA Covered</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-4 pt-3 border-t border-outline-variant/30 flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant">
+<span>Root cause: Air travel rebound post-Q2 European partner expansion</span>
+<a class="text-primary hover:underline font-label-md text-label-md flex items-center gap-1" href="#">Policy Controls <span class="material-symbols-outlined text-xs">tune</span></a>
+</div>
+</div>
+<!-- Right Column (col-span-6): Decarbonization Levers (MACC $/tCO2e) with Interactive Sliders -->
+<div class="lg:col-span-6 bg-surface-container-low/70 backdrop-blur-md border border-outline-variant/50 rounded-xl p-6 specular-glow flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<div>
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm font-semibold text-on-surface">Decarbonization Levers (MACC $/tCO2e)</h2>
+<span class="font-mono-badge text-mono-badge px-2 py-0.5 rounded bg-primary-container/15 text-primary border border-primary/30">SIMULATOR ACTIVE</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Marginal Abatement Cost Curve levers &amp; capital allocation ROI</p>
+</div>
+<button class="px-2.5 py-1 rounded bg-surface-container hover:bg-surface-variant text-primary border border-primary/30 font-label-md text-label-md flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">tune</span>
+<span>Reset Model</span>
+</button>
+</div>
+<!-- Interactive Sliders Container -->
+<div class="space-y-4">
+<!-- Lever 1: Solar PPA Virtual Offsite -->
+<div class="p-3.5 rounded-lg bg-surface-container-lowest/60 border border-outline-variant/40">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md font-medium text-on-surface">Solar PPA Virtual Offsite</span>
+<div class="font-mono-badge text-mono-badge text-primary">Abatement: 1,450 tCO2e • -$42/t (Cost-Negative Savings)</div>
+</div>
+<div class="text-right font-mono-badge text-mono-badge">
+<span class="text-primary font-bold text-sm" id="slider1-val">85%</span> Implemented
+                </div>
+</div>
+<input class="w-full h-1.5 bg-surface-variant rounded-lg appearance-none cursor-pointer mt-3 accent-primary" max="100" min="0" oninput="document.getElementById('slider1-val').innerText = this.value + '%'" type="range" value="85"/>
+<div class="flex justify-between text-[10px] font-mono-badge text-outline-variant mt-1">
+<span>0% Pipeline</span>
+<span>50% RFP</span>
+<span class="text-primary">100% Fully Commissioned</span>
+</div>
+</div>
+<!-- Lever 2: Corporate Fleet Electrification -->
+<div class="p-3.5 rounded-lg bg-surface-container-lowest/60 border border-outline-variant/40">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md font-medium text-on-surface">Corporate Fleet Electrification</span>
+<div class="font-mono-badge text-mono-badge text-on-surface-variant">Abatement: 780 tCO2e • +$15/t Abatement Cost</div>
+</div>
+<div class="text-right font-mono-badge text-mono-badge">
+<span class="text-secondary font-bold text-sm" id="slider2-val">40%</span> Implemented
+                </div>
+</div>
+<input class="w-full h-1.5 bg-surface-variant rounded-lg appearance-none cursor-pointer mt-3 accent-secondary" max="100" min="0" oninput="document.getElementById('slider2-val').innerText = this.value + '%'" type="range" value="40"/>
+<div class="flex justify-between text-[10px] font-mono-badge text-outline-variant mt-1">
+<span>Phase 1 (Exec EV)</span>
+<span class="text-secondary">Phase 2 (Depot Van Fleet)</span>
+<span>Phase 3 (Heavy Transport)</span>
+</div>
+</div>
+<!-- Lever 3: Scope 3 Supplier Clean Energy Mandate -->
+<div class="p-3.5 rounded-lg bg-surface-container-lowest/60 border border-outline-variant/40">
+<div class="flex items-center justify-between">
+<div>
+<span class="font-label-md text-label-md font-medium text-on-surface">Scope 3 Supplier Clean Energy Mandate</span>
+<div class="font-mono-badge text-mono-badge text-primary">Abatement: 1,890 tCO2e • -$12/t Abatement Cost</div>
+</div>
+<div class="text-right font-mono-badge text-mono-badge">
+<span class="text-tertiary font-bold text-sm" id="slider3-val">60%</span> Implemented
+                </div>
+</div>
+<input class="w-full h-1.5 bg-surface-variant rounded-lg appearance-none cursor-pointer mt-3 accent-tertiary" max="100" min="0" oninput="document.getElementById('slider3-val').innerText = this.value + '%'" type="range" value="60"/>
+<div class="flex justify-between text-[10px] font-mono-badge text-outline-variant mt-1">
+<span>Clause Inclusion</span>
+<span class="text-tertiary">Tier 1 Attestation</span>
+<span>Audit Verified</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Net Financial & Carbon Impact Box -->
+<div class="mt-4 p-3 rounded-lg bg-primary-container/10 border border-primary/30 flex items-center justify-between">
+<div class="flex items-center gap-2.5">
+<span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings: 'FILL' 1;">payments</span>
+<div>
+<div class="font-label-md text-label-md font-semibold text-primary leading-tight">Simulated Annual Net Impact</div>
+<div class="font-mono-badge text-mono-badge text-on-surface-variant">Combined 4,120 tCO2e avoided per annum</div>
+</div>
+</div>
+<div class="text-right">
+<div class="font-mono-metric-md text-mono-metric-md font-bold text-primary">+$142,800<span class="text-body-sm font-body-sm font-normal text-on-surface-variant">/yr</span></div>
+<div class="font-mono-badge text-mono-badge text-primary">Net OPEX Savings</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: Quick Actions Executive Ribbon & Footer -->
+<section class="bg-surface-container-low/80 backdrop-blur-md border border-outline-variant/50 rounded-xl p-4 specular-rim space-y-4">
+<div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+<!-- Action Cluster -->
+<div class="flex flex-wrap items-center gap-3">
+<!-- Launch Scenario Simulation -->
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary hover:bg-tertiary-fixed text-on-primary font-label-md text-label-md font-semibold transition-all duration-150 shadow-[0_0_20px_-2px_rgba(78,222,163,0.4)] active:scale-[0.98]">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span>Launch Scenario Simulation</span>
+</button>
+<!-- Trigger Scope 3 Supplier Outreach -->
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface-variant/40 hover:bg-surface-variant/70 text-on-surface border border-outline-variant/60 font-label-md text-label-md font-medium transition-all duration-150 active:scale-[0.98]">
+<span class="material-symbols-outlined text-lg text-primary">send</span>
+<span>Trigger Scope 3 Supplier Outreach</span>
+</button>
+<!-- Download SB 253 & CSRD Report -->
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-lg bg-surface-container hover:bg-surface-variant text-on-surface border border-outline-variant/60 font-label-md text-label-md font-medium transition-all duration-150 active:scale-[0.98]">
+<span class="material-symbols-outlined text-lg text-secondary">picture_as_pdf</span>
+<span>Download SB 253 &amp; CSRD Report</span>
+</button>
+</div>
+<!-- Secondary Utility Indicator -->
+<div class="flex items-center gap-2 text-on-surface-variant font-mono-badge text-mono-badge self-end md:self-center">
+<span class="w-2 h-2 rounded-full bg-primary beacon-pulse"></span>
+<span>SYSTEM READY FOR Q3 ASSURANCE AUDIT</span>
+</div>
+</div>
+<!-- Live Telemetry Status Ticker -->
+<div class="pt-3 border-t border-outline-variant/30 flex flex-col sm:flex-row items-center justify-between text-body-sm font-body-sm text-on-surface-variant gap-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-base">sync</span>
+<span class="font-mono-badge text-mono-badge text-[11px]">Real-time telemetry connected to 42 enterprise ERPs &amp; utility APIs • Last synced 3 mins ago</span>
+</div>
+<div class="flex items-center gap-4 text-xs font-mono-badge">
+<span>SHA-256 LEDGER LOCK</span>
+<span class="text-outline">•</span>
+<span>ISO 14064-3 ACCREDITED</span>
+<span class="text-outline">•</span>
+<span class="text-primary">GREENLIGN v4.12-ENTERPRISE</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom System Micro Bar (Sovereignty & Governance Metadata) -->
+<footer class="w-full border-t border-outline-variant/30 bg-surface-container-lowest/80 py-3 px-6 text-center text-on-surface-variant text-body-sm font-body-sm z-10">
+<div class="max-w-[1600px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+<div class="flex items-center gap-2">
+<span class="font-headline-sm text-headline-sm font-bold tracking-tight text-primary">Greenlign</span>
+<span class="text-outline text-xs">| Institutional ESG Telemetry Platform</span>
+</div>
+<div class="text-body-sm font-body-sm text-outline-variant">
+        Protected under Sovereign Carbon Encryption Protocol. Acme Global Corp authorized session.
+      </div>
+</div>
+</footer>
+</body></html>
+

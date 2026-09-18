@@ -17,6 +17,28 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4 text-left">
+          {/* Stitch Executive UI */}
+          <Link
+            href="/executive-dashboard"
+            className="p-6 rounded-xl bg-slate-900 border border-emerald-500/40 shadow-lg hover:shadow-emerald-500/20 hover:border-emerald-400 transition group relative overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-emerald-400 font-bold text-sm uppercase tracking-wider">
+                Stitch UI
+              </span>
+              <span className="px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                Premium Dark
+              </span>
+            </div>
+            <h2 className="text-lg font-bold text-white group-hover:text-emerald-300 transition">
+              Obsidian Executive Dashboard
+            </h2>
+            <p className="mt-2 text-xs text-slate-400 leading-relaxed">
+              Ultra-premium dark theme, frosted glassmorphism, glowing emerald telemetry, SBTi net-zero curves, and MACC ranking.
+            </p>
+          </Link>
+
           {/* Executive Dashboard */}
           <Link
             href="/dashboard"
