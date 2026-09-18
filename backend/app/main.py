@@ -8,6 +8,7 @@ from app.api.dashboard import router as dashboard_router
 from app.api.disclosures import router as disclosures_router
 from app.api.health import router as health_router
 from app.api.ingestion import router as ingestion_router
+from app.api.outreach import router as outreach_router
 from app.api.simulator import router as simulator_router
 
 app = FastAPI(
@@ -52,4 +53,9 @@ app.include_router(
     simulator_router,
     prefix="/api/simulator",
     tags=["simulator"],
+)
+app.include_router(
+    outreach_router,
+    prefix="/api/outreach",
+    tags=["outreach"],
 )
