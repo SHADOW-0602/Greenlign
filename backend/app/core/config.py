@@ -29,9 +29,9 @@ class Settings(BaseSettings):
     @classmethod
     def database_url_must_have_ssl(cls, v: str) -> str:
         """Fail fast if someone accidentally points at a local Postgres without SSL."""
-        if "sslmode" not in v and "sqlite" not in v:
+        if "sslmode" not in v and "ssl" not in v and "sqlite" not in v:
             raise ValueError(
-                "DATABASE_URL must include ?sslmode=require for Neon. "
+                "DATABASE_URL must include ?sslmode=require or ?ssl=require for Neon. "
                 "Example: postgresql+asyncpg://user:pass@host/db?sslmode=require"
             )
         return v
