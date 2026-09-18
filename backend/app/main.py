@@ -4,6 +4,7 @@ from app.api.anomalies import router as anomalies_router
 from app.api.audit import router as audit_router
 from app.api.calculation import router as calculation_router
 from app.api.classification import router as classification_router
+from app.api.dashboard import router as dashboard_router
 from app.api.disclosures import router as disclosures_router
 from app.api.health import router as health_router
 from app.api.ingestion import router as ingestion_router
@@ -40,4 +41,9 @@ app.include_router(
     anomalies_router,
     prefix="/api/anomalies",
     tags=["anomalies"],
+)
+app.include_router(
+    dashboard_router,
+    prefix="/api/dashboard",
+    tags=["dashboard"],
 )

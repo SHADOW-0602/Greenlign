@@ -1,4 +1,5 @@
 from .anomaly_detector import AnomalyDetector
+from .dashboard_service import DashboardService
 from .ingestion_service import (
     IngestionError,
     IngestionService,
@@ -16,6 +17,7 @@ from .tabular_parser import ParsedActivityRow, TabularParser, TabularParserError
 
 __all__ = [
     "AnomalyDetector",
+    "DashboardService",
     "IngestionError",
     "IngestionService",
     "PDFParser",
