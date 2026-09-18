@@ -6,17 +6,65 @@ export default function Home() {
       <div className="max-w-4xl mx-auto text-center space-y-8">
         <div>
           <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-300 mb-4">
-            Phase 6 Complete: Greenwashing & Anomaly Detection
+            Phase 7 Complete: Executive Dashboard, Simulator &amp; Supplier Outreach
           </span>
           <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight sm:text-5xl">
             Greenlign
           </h1>
           <p className="mt-3 text-lg text-slate-600 max-w-2xl mx-auto">
-            Audit-grade, AI-assisted greenhouse gas accounting platform with deterministic calculation provenance, referential integrity guards, statutory ESG disclosures, and greenwashing detection.
+            Audit-grade, AI-assisted greenhouse gas accounting platform with deterministic calculation provenance, referential integrity guards, statutory ESG disclosures, decarbonization simulations, and autonomous Scope 3 supplier outreach.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-4 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4 text-left">
+          {/* Executive Dashboard */}
+          <Link
+            href="/dashboard"
+            className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-500 transition group"
+          >
+            <div className="text-emerald-600 font-bold text-sm uppercase tracking-wider mb-2">
+              Phase 7
+            </div>
+            <h2 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">
+              Executive ESG Dashboard
+            </h2>
+            <p className="mt-2 text-xs text-slate-500 leading-relaxed">
+              Scope 1, 2, and 3 aggregate analytics, top emission hotspots, category breakdowns, and multi-year historical trends.
+            </p>
+          </Link>
+
+          {/* Scenario Simulator */}
+          <Link
+            href="/simulator"
+            className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-500 transition group"
+          >
+            <div className="text-emerald-600 font-bold text-sm uppercase tracking-wider mb-2">
+              Phase 7
+            </div>
+            <h2 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">
+              Decarbonization Simulator
+            </h2>
+            <p className="mt-2 text-xs text-slate-500 leading-relaxed">
+              Model solar PPAs, fleet EV transitions, heat pump retrofits, and supply chain levers with MACC ($/tCO2e) ROI ranking.
+            </p>
+          </Link>
+
+          {/* Supplier Outreach */}
+          <Link
+            href="/supplier-outreach"
+            className="p-6 rounded-xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-500 transition group"
+          >
+            <div className="text-emerald-600 font-bold text-sm uppercase tracking-wider mb-2">
+              Phase 7
+            </div>
+            <h2 className="text-lg font-bold text-slate-900 group-hover:text-emerald-600 transition">
+              Scope 3 Supplier Outreach
+            </h2>
+            <p className="mt-2 text-xs text-slate-500 leading-relaxed">
+              Identify missing Scope 3 supplier activity, generate tailored outreach emails with Groq, and record primary supplier factors.
+            </p>
+          </Link>
+
           {/* Review Queue */}
           <Link
             href="/review"
@@ -45,7 +93,7 @@ export default function Home() {
               Audit Provenance Trail
             </h2>
             <p className="mt-2 text-xs text-slate-500 leading-relaxed">
-              Trace end-to-end evidence trees from raw files to activity lines, emission factor tables, and mathematical formulas in &lt;200ms.
+              Trace end-to-end evidence trees from raw files to activity lines, emission factor tables, and mathematical formulas.
             </p>
           </Link>
 
