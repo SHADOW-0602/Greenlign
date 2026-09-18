@@ -6,6 +6,7 @@ from .calculation import Calculation
 from .disclosure import Disclosure
 from .emission_factor import EmissionFactor
 from .source_document import SourceDocument
+from .supplier_outreach import SupplierOutreach
 
 __all__ = [
     "Base",
@@ -16,4 +17,5 @@ __all__ = [
     "Disclosure",
     "SourceDocument",
     "AnomalyFlag",
+    "SupplierOutreach",
 ]

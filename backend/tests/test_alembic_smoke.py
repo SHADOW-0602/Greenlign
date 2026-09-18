@@ -40,6 +40,8 @@ def test_script_directory_contains_initial_migration():
     assert revisions["0002_source_document"].down_revision == "0001_initial_schema"
     assert "0003_anomaly_flag" in revisions
     assert revisions["0003_anomaly_flag"].down_revision == "0002_source_document"
+    assert "0004_supplier_outreach" in revisions
+    assert revisions["0004_supplier_outreach"].down_revision == "0003_anomaly_flag"
 
 
 def test_script_directory_recognizes_head_revision():
@@ -47,8 +49,8 @@ def test_script_directory_recognizes_head_revision():
     config = _get_alembic_config()
     script_dir = ScriptDirectory.from_config(config)
 
-    assert script_dir.get_current_head() == "0003_anomaly_flag"
-    assert script_dir.get_heads() == ["0003_anomaly_flag"]
+    assert script_dir.get_current_head() == "0004_supplier_outreach"
+    assert script_dir.get_heads() == ["0004_supplier_outreach"]
 
     head_rev = script_dir.get_revision(script_dir.get_current_head())
     assert head_rev is not None
@@ -78,6 +80,8 @@ def test_offline_migration_sql_generation():
         "audit_log",
         "disclosure",
         "source_document",
+        "anomaly_flag",
+        "supplier_outreach",
     ]
     for table in expected_tables:
         assert f"CREATE TABLE {table}" in upgrade_sql
@@ -89,7 +93,7 @@ def test_offline_migration_sql_generation():
     # Test downgrade DDL generation
     downgrade_buf = io.StringIO()
     with contextlib.redirect_stdout(downgrade_buf):
-        command.downgrade(config, "0002_source_document:base", sql=True)
+        command.downgrade(config, "head:base", sql=True)
     downgrade_sql = downgrade_buf.getvalue()
 
     for table in expected_tables:
