@@ -12,12 +12,14 @@ from .pdf_parser import (
     PDFParserError,
 )
 from .pii_redaction import PIIRedactor, RedactedResult
+from .scenario_simulator import ScenarioSimulator
 from .storage_service import StorageService
 from .tabular_parser import ParsedActivityRow, TabularParser, TabularParserError
 
 __all__ = [
     "AnomalyDetector",
     "DashboardService",
+    "ScenarioSimulator",
     "IngestionError",
     "IngestionService",
     "PDFParser",
